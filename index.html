@@ -13,7 +13,7 @@
 				height: 100%;
 				margin: 0px;
 			}
-			#toolbar, #save, #clear, #widen, #narrow, #lAlpha, #rAlpha, #scatRect, #scatCirc, #spray,#rect, #circ, #line, #qCurve, #fill, #stroke {border: 1px lightblue; border-style:solid none none none; color: darkblue; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
+			#toolbar, #save, #clear, #widen, #narrow, #lAlpha, #rAlpha, #select, #scatRect, #scatCirc, #spray,#rect, #bc, #circ, #line, #qCurve, #fill, #stroke, #move, #copy, #delete {border: 1px lightblue; border-style:solid none none none; color: darkblue; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
 			 -moz-user-select: none;
     -ms-user-select: none;
     }
@@ -21,18 +21,18 @@
     -moz-user-select: none;
     -ms-user-select: none;
    }
-	 #scatRect:active, #scatCirc:active, #paint:active, #spray:active,#rect:active, #circ:active, #line:active, #qCurve:active { background-color: lightblue;}
+	 #scatRect:active, #scatCirc:active, #save:active, #paint:active, #spray:active,#rect:active, #circ:active, #line:active, #qCurve:active { background-color: lightblue;}
 			#toolbar {border:none}
 			#container {position: relative;}
 		
 		</style>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-	<script type="text/javascript" src="scribble6.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+	<script type="text/javascript" src="scribble9.js"></script>
 	<script type="text/javascript" src="init.js"></script>
 	</head>
 	<body>
 		<div id="container" style="padding:5px 0px 0px 0px; ">
-			<div id="colorToolbar" style="border: 0px solid dark blue; float: top;">
+			<div id="colorToolbar" style="/*border: 0px solid dark blue;*/ /*float: top;*/">
 				<div id="darkred" style="background:darkred; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
 				<div id="crimson" style="background:crimson; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
 				<div id="orangered" style="background:orangered; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
@@ -50,28 +50,35 @@
 				<div id="mediumvioletred" style="background:mediumvioletred; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
 				<div id="orchid" style="background:orchid; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
 				<div id="white" style="background:white; width:38px; height:30px; float:left;"></div><div style="clear:top;"></div>				
-				<div id="black" style="background:black; width:38px; height:30px; float:left;"></div><div style="clear: both;"></div>		
+				<div id="black" style="background:black; width:38px; height:30px; float:left;"></div><div style="clear: both;"></div>	
+				
 				<!--<div id="blankCanvas" style="background:white; width:canvas.width - 30px; float: right;"></div> -->
 				</div>
-			<div id="toolbar" style="border: 0px solid dark blue; float: left; ">
-				<div id="paint" title="Drawing Tool" style="width:36px; height:16px; float:left;">Draw</div><div style="clear: both;"></div>
-				<div id="line" title="Straight Line Tool" style="width:36px; height:16px; float:left;">Line</div><div style="clear: both;"></div>
-				<div id="spray" title="Spray Paint Tool" style="width:36px; height:16px; float:left;">Spray</div><div style="clear: both;"></div>
-				<div id="rect" title="Rectangle Tool" style="width:36px; height:16px; float:left;">Rect</div><div style="clear: both;"></div>
-				<div id="circ" title="Circle Tool" style="width:36px; height:16px; float:left;">Circ</div><div style="clear: both;"></div>
-				<div id="scatRect" title="Square Brush" style="width:36px; height:16px; float:left;">SB</div><div style="clear: both;"></div>
-				<div id="scatCirc" title="Circle Brush" style="width:36px; height:16px; float:left;">CB</div><div style="clear: both;"></div>
-				<div id="qCurve" title="Quadratic Curve Tool &#13Double click for control point, then click and drag from start point to end point" style="width:36px; height:16px; float:left;">QC</div><div style="clear: both;"></div>
-				<div id="widen" title="Increase Stroke Width" style="width:36px; height:16px; float:left;"> &gt </div><div style="clear: both;"></div>
-				<div id="narrow" title="Decrease Stroke Width" style="width:36px; height:16px; float:left;"> &lt </div><div style="clear: both;"></div>
-				<div id="rAlpha" title="Increase Opacity" style="width:36px; height:16px; float:left;"> A+ </div><div style="clear: both;"></div>
-				<div id="lAlpha" title="Decrease Opacity" style="width:36px; height:16px; float:left;"> A- </div><div style="clear: both;"></div>
-				<div id="fill" title="Draw filled shapes and lines" style="width:36px; height:16px; float:left;">Fill</div><div style="clear: both;"></div>
-				<div id="stroke" title="Draw outlined shapes and lines" style="width:36px; height:16px; float:left;">Stroke</div><div style="clear: both;"></div>
-				
+			<div id="toolbar" style="/*border: 0px solid dark blue;*/float: left; ">
+				<div id="paint" title="Drawing Tool" style="width:38px; height:16px; float:left;">Draw</div><div style="clear: both;"></div>
+				<div id="line" title="Straight Line Tool" style="width:38px; height:16px; float:left;">Line</div><div style="clear: both;"></div>
+				<div id="spray" title="Spray Paint Tool" style="width:38px; height:16px; float:left;">Spray</div><div style="clear: both;"></div>
+				<div id="rect" title="Rectangle Tool" style="width:38px; height:16px; float:left;">Rect</div><div style="clear: both;"></div>
+				<div id="circ" title="Circle Tool" style="width:38px; height:16px; float:left;">Circ</div><div style="clear: both;"></div>
+				<div id="scatRect" title="Square Brush" style="width:38px; height:16px; float:left;">SB</div><div style="clear: both;"></div>
+				<div id="scatCirc" title="Circle Brush" style="width:38px; height:16px; float:left;">CB</div><div style="clear: both;"></div>
+				<div id="qCurve" title="Quadratic Curve Tool &#13Double click for control point, then click and drag from start point to end point" style="width:38px; height:16px; float:left;">QC</div><div style="clear: both;"></div>
+				<div id="widen" title="Increase Stroke Width" style="width:38px; height:16px; float:left;"> &gt </div><div style="clear: both;"></div>
+				<div id="narrow" title="Decrease Stroke Width" style="width:38px; height:16px; float:left;"> &lt </div><div style="clear: both;"></div>
+				<div id="rAlpha" title="Increase Opacity" style="width:38px; height:16px; float:left;"> A+ </div><div style="clear: both;"></div>
+				<div id="lAlpha" title="Decrease Opacity" style="width:38px; height:16px; float:left;"> A- </div><div style="clear: both;"></div>
+				<div id="fill" title="Draw filled shapes and lines" style="width:38px; height:16px; float:left;">Fill</div><div style="clear: both;"></div>
+				<div id="stroke" title="Draw outlined shapes and lines" style="width:38px; height:16px; float:left;">Stroke</div><div style="clear: both;"></div>
+				<!--<div id="select" title="Select a section of canvas to move, copy or delete" style="width:38px; height:16px; float:left;">Select</div><div style="clear: both;"></div>-->
+				<div id="move" title="Click and drag to select area to be moved, then double click destination" style="width:38px; height:16px; float:left;">Move</div><div style="clear: both;"></div>
+				<div id="copy" title="Click and drag to select area to be copied, then double click destination" style="width:38px; height:16px; float:left;">Copy</div><div style="clear: both;"></div>
+				<div id="delete" title="Click and drag to select area to be deleted" style="width:38px; height:16px; float:left;">Del</div><div style="clear: both;"></div>
 				
 				<div id="save" style="width:36px; height:16px; float:left;">Save</div><div style="clear: both;"></div>
 				<div id="clear" title="Erase entire Page" style="width:36px; height:16px; float:left;">Clear</div><div style="clear: both;"></div>
+				<div id="bc" title="Change background color&#13(will cover previous artwork)" style="width:38px; height:16px; float:left;">BC</div><div style="clear: both;"></div>
+				
+				
 			</div> 
 			<div id="canvasDiv" style="float: left;">
 				<canvas id="imageView">
@@ -85,7 +92,7 @@
 					href="http://www.konqueror.org">Konqueror</a>.</p>
 				</canvas>        
 			</div>
-		<div id="stats" style="font-size:8pt; padding-left: 50px; float: left;">0 0</div>        
+		<div id="stats" style="font-size:8pt; padding-right: 30px; color:white; font-family: sans-serif; float: right;">0 0</div>        
     </div>	
  	
 	</body>
