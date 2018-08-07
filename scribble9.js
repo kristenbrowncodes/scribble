@@ -219,10 +219,13 @@ $('#' + color).css("border-top", "3px solid " + borderColor);
 }*/
 function onColorClick(color) {
 	if(changeBackground){
+		var zcolor = lastColor;
 		backgroundColor = color;
 		context.fillStyle = backgroundColor;
 		context.fillRect(0,0,context.canvas.width, context.canvas.height)
-		changeBackground = false;}
+		changeBackground = false;
+		context.fillStyle = zcolor;
+	}
 	else{
 	context.closePath();
 	context.beginPath();
