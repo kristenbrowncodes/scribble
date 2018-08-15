@@ -49,7 +49,7 @@ var h =0;
 function init() {
 	canvas = $('#imageView').get(0);
 	context = canvas.getContext('2d');
-	canvas.width = window.innerWidth - 75;
+	canvas.width = window.innerWidth - 95;
 	canvas.height = window.innerHeight - 185;
 	context.fillStyle = 'white';
 	context.fillRect(0,0,context.canvas.width, context.canvas.height)
