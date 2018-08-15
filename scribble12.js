@@ -60,7 +60,7 @@ function init() {
 	canvas.addEventListener('mousedown', function(e) { onMouseDown(e);enableDraw = true;}, false);
 	canvas.addEventListener('mouseup', function(e) { onMouseUp(e); enableDraw = false; started = false;}, false);
 	canvas.addEventListener('mouseleave', function(e) { enableDraw = false; started = false;}, false);
-	canvas.addEventListener('touchmove', function(ev){onMouseMove; ev.preventDefault();}, false);
+	canvas.addEventListener('touchmove', 'mousemove', onMouseMove, false);
 	canvas.addEventListener('touchstart', function(e) { onMouseDown(e);enableDraw = true;}, false);
 	canvas.addEventListener('touchend', function(e) { onMouseUp(e); enableDraw = false; started = false;}, false);
 	canvas.addEventListener('touchleave', function(e) { enableDraw = false; started = false;}, false);
