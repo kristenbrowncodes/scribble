@@ -6,12 +6,13 @@ var started = false;
 var canvas, context;
 var lastColor = 'black';
 var thickness = 2;
-alpha = 1;
+var alpha = 1;
 var scatRect = false;
 var scatCirc = false;
 var sprayPaint = false;
 var spray2Paint = false;
 var density = 5;
+var x,y;
 var x1 = 0;
 var y1=0;
 var x2 = 0;
@@ -60,7 +61,7 @@ function init() {
 	matchMed(mM);
 	mM.addListener(matchMed);
 	context.fillStyle = 'white';
-	context.fillRect(0,0,context.canvas.width, context.canvas.height)
+	context.fillRect(0,0,context.canvas.width, context.canvas.height);
 	context.fillStyle = 'black';
 	//context.lineJoin = context.lineCap = 'round';
 	canvas.addEventListener('mousemove', onMouseMove, false);	
@@ -182,7 +183,7 @@ function clearPage (){
 	//} else {clearTrans();}
 }
 function clearTrans(){
-	context.clearRect(0,0,context.canvas.width, context.canvas.height)
+	context.clearRect(0,0,context.canvas.width, context.canvas.height);
 	context.fillStyle = backgroundColor;
 }
 
@@ -216,29 +217,31 @@ function onMouseMove(ev) {
 		y = ev.pageY - ffyoffset;
 	}
 	else if (ev.clientX || ev.clientY) 	{
-		x = ev.clientX + document.body.scrollLeft
-			+ document.documentElement.scrollLeft - ffxoffset;
-		y = ev.clientY + document.body.scrollTop
-			+ document.documentElement.scrollTop - ffyoffset;
+		x = ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - ffxoffset;
+		y = ev.clientY + document.body.scrollTop + document.documentElement.scrollTop - ffyoffset;
 	}
 	// posx and posy contain the mouse position relative to the document
 	// Do something with this information
 	selectBrush(x,y);
 }
-
-function onTouchMove (ev) {
-	var x,y;
-	if (!ev) var ev = window.event;
-	if(ev.touches){
-	if(ev.touches.length == 1){
-		var touch = ev.touches[0];
+function getTouchCoords(e){
+	if (!e) var e = window.event;
+	if(e.touches){
+	if(e.touches.length == 1){
+		var touch = e.touches[0];
 		x = touch.pageX - touch.target.ffxoffset;
 		y = touch.pageY - touch.target.ffyoffset;
 	}
+}
+}
+
+function onTouchMove (ev) {
+	//var x,y;
+	getTouchCoords(e)
 	selectBrush(x,y);
 	event.preventDefault();
 }
-}
+
 function selectBrush(x,y){	
 	if (enableDraw  ){
 		if (brushSelect == "pencil"){
@@ -261,10 +264,10 @@ function selectBrush(x,y){
 		else if(brushSelect == "squareBrush") {
 			context.closePath();
 			context.beginPath();
-			context.moveTo(x,y)
+			context.moveTo(x,y);
 			context.globalAlpha = alpha;
 			var sThickness = Number(thickness) *4 ; 
-			context.rect(x,y,sThickness, sThickness)
+			context.rect(x,y,sThickness, sThickness);
 			if(fill) {
 				context.fill();
 			} else {context.lineWidth = 1; context.stroke();}
@@ -280,7 +283,7 @@ function selectBrush(x,y){
 		} else if(brushSelect == "circleBrush"){
 			context.closePath();
 			context.beginPath();
-			context.moveTo(x,y)
+			context.moveTo(x,y);
 			context.globalAlpha = alpha;
 			var cThickness = Number(thickness) * 2;
 			context.arc(x,y,cThickness,2 * Math.PI, false);
@@ -294,7 +297,7 @@ function selectBrush(x,y){
 			var dist = thickness/10;
 			context.closePath();
 			context.beginPath();
-			context.moveTo(x,y)
+			context.moveTo(x,y);
 			context.globalAlpha = alpha;
 			context.arc(x,y,dist, 2 * Math.PI, false);
 			context.arc(x+dist+spot,y,spot, 2 * Math.PI, false);
@@ -351,7 +354,7 @@ function selectBrush(x,y){
 			context.moveTo(x,y);
 			context.lineTo(x+Number(thickness)+5, y-Number(thickness)-5);
 			context.stroke();
-			context.moveTo(x+(Number(thickness))/2, y)
+			context.moveTo(x+(Number(thickness))/2, y);
 			context.lineTo(x+(Number(thickness))/2 +5, y-Number(thickness)-5);
 			context.stroke();
 		} else if (brushSelect == "fountainPen"){
@@ -440,23 +443,23 @@ function selectBrush(x,y){
 				context.lineWidth = Number(thickness) +4;//+5;
 				context.beginPath();
 				context.moveTo(/*xd,yd*/old.oldX,old.oldY);
-				context.lineTo(x,y)
+				context.lineTo(x,y);
 				context.stroke();
 			
 				context.moveTo(/*xd-4,yd+4*/old.oldX-(Number(thickness)+2),old.oldY+(Number(thickness)+2));
-				context.lineTo(x -(Number(thickness)+2),y+(Number(thickness)+2))
+				context.lineTo(x -(Number(thickness)+2),y+(Number(thickness)+2));
 				context.stroke();
 			
 				context.moveTo(/*xd-2,yd+2*/old.oldX-(Number(thickness)+2)/2,old.oldY+(Number(thickness)+2)/2);
-				context.lineTo(x-(Number(thickness)+2)/2,y+(Number(thickness)+2)/2)
+				context.lineTo(x-(Number(thickness)+2)/2,y+(Number(thickness)+2)/2);
 				context.stroke();
 			
 				context.moveTo(/*xd+2,yd-2*/old.oldX+(Number(thickness)+2)/2,old.oldY-(Number(thickness)+2)/2);
-				context.lineTo(x+(Number(thickness)+2)/2,y-(Number(thickness)+2)/2)
+				context.lineTo(x+(Number(thickness)+2)/2,y-(Number(thickness)+2)/2);
 				context.stroke();
 			
 				context.moveTo(/*xd+4,yd-4*/old.oldX+(Number(thickness)+2),old.oldY-(Number(thickness)+2));
-				context.lineTo(x+(Number(thickness)+2),y-(Number(thickness)+2))
+				context.lineTo(x+(Number(thickness)+2),y-(Number(thickness)+2));
 				context.stroke();
 			//}
 			old = {oldX: x, oldY: y}; 
@@ -491,13 +494,13 @@ function selectBrush(x,y){
 					console.log("np");
 				context.beginPath();
 				if(Number(thickness) < 10){
-				context.lineWidth = Number(thickness) * .8;}
+				context.lineWidth = Number(thickness) * 0.8;}
 				else{
-				context.lineWidth =Number(thickness)*.4;}
-				//context.strokeStyle = 'rgba(0,0,0,.3)';
-				context.globalAlpha = alpha* .1;
-				context.moveTo(bzPoints[bzPoints.length -1].bzX + (dx*.2),bzPoints[bzPoints.length -1].bzY + (dy*.2));
-				context.lineTo(bzPoints[i].bzX - (dx*.2), bzPoints[i].bzY - (dy*.2));
+				context.lineWidth =Number(thickness)*0.4;}
+				//context.strokeStyle = 'rgba(0,0,0,0.3)';
+				context.globalAlpha = alpha* 0.1;
+				context.moveTo(bzPoints[bzPoints.length -1].bzX + (dx*0.2),bzPoints[bzPoints.length -1].bzY + (dy*0.2));
+				context.lineTo(bzPoints[i].bzX - (dx*0.2), bzPoints[i].bzY - (dy*0.2));
 				context.stroke();
 				}
 				/*context.moveTo(p1.bzX, p1.bzY);
@@ -521,19 +524,19 @@ function selectBrush(x,y){
 			//context.lineJoin = 'round';
 			bzPoints.push({bzX:x,bzY:y});
 		context.beginPath();
-			context.globalAlpha = alpha* .5;
+			context.globalAlpha = alpha* 0.5;
 			context.moveTo(bzPoints[bzPoints.length-2].bzX,bzPoints[bzPoints.length-2].bzY);
-			context.lineWidth = Number(thickness)*.5;
+			context.lineWidth = Number(thickness)*0.5;
 			context.lineTo(bzPoints[bzPoints.length-1].bzX,bzPoints[bzPoints.length-1].bzY);
 			context.stroke();
-			context.globalAlpha = alpha*.1;
+			context.globalAlpha = alpha*0.1;
 			
 			for( var i = 1; i< bzPoints.length; i++){
 				dx = bzPoints[i].bzX-bzPoints[bzPoints.length-1].bzX;
 				dy = bzPoints[i].bzY-bzPoints[bzPoints.length-1].bzY;
 				d = dx *dx + dy * dy;
 				
-				if (d</*1000*/ 1250* Number(thickness) && Math.random() > .9) {
+				if (d</*1000*/ 1250* Number(thickness) && Math.random() > 0.9) {
 					console.log("np");
 				context.beginPath();
 				/*if(Number(thickness) < 10){
@@ -542,7 +545,7 @@ function selectBrush(x,y){
 				context.lineWidth =Number(thickness)*.4;}*/
 				//context.strokeStyle = 'rgba(0,0,0,.3)';
 				//context.globalAlpha = alpha* .1;
-				context.lineWidth = Number(thickness) * .3
+				context.lineWidth = Number(thickness) * 0.3;
 				context.moveTo(bzPoints[bzPoints.length -1].bzX /*+ (dx*.2)*/,bzPoints[bzPoints.length -1].bzY /*+ (dy*.2)*/);
 				context.lineTo(bzPoints[i].bzX /*- (dx*.2)*/, bzPoints[i].bzY /*- (dy*.2)*/);
 				context.stroke();
@@ -574,17 +577,17 @@ function raiseOpacity(){
 
 function opacitySlider(OS) {
     document.querySelector('#opacity').value = OS;
-    alpha = Number((document.querySelector('#opacity').value))/10
+    alpha = Number((document.querySelector('#opacity').value))/10;
     console.log(alpha);
 }
 function strokeWidthSlider(SWS) {
     document.querySelector('#lineThickness').value = SWS;
-    thickness = document.querySelector('#lineThickness').value
+    thickness = document.querySelector('#lineThickness').value;
     console.log(thickness);
 }
 function enableTranparencySlider(ETS) {
     document.querySelector('#ET').value = ETS;
-    trans1 = document.querySelector('#ET').value
+    trans1 = document.querySelector('#ET').value;
 	if (trans1 == 1){
 		enableTranparency();
 	} else if (trans1 == 0){
@@ -597,6 +600,7 @@ function getTrans(){
 	console.log(checkVal);
 	var chooseTrans = confirm('Changing transparency settings will erase existing artwork. Do you wish to proceed?');
 	if (chooseTrans && checkVal){
+		console.log("enenen");
 		enableTranparency();}
 	else if(checkVal && !chooseTrans){
 		document.getElementById("transCheck").checked = false;
@@ -637,23 +641,24 @@ function midPointBtw(p1, p2) {
 
 function enableTranparency(){
 	//enableTrans = confirm('Changing transparency settings will erase existing artwork. Do you wish to proceed?');
-	if(enableTrans){
+//	if(enableTrans){
 		backgroundAlphaLayers.length = 0;
 		backgroundLayers.length = 0;
 		disableTrans = false;
-		//clearPage();
-		clearTrans();
+		backgroundColor = 'white';
+		clearPage();
+		//clearTrans();
 		$('#eTrans').css("background-color:", "azure;" );
 		$('#dTrans').css("background-color:", "aliceblue;" );
 		
 		disableTrans = false;
 		pencilDraw = true;
 		console.log("en",enableTrans,disableTrans);
-	}// else {document.getElementById(transCheck).checked = false;}
+//	}// else {document.getElementById(transCheck).checked = false;}
 }
 function disableTranparency(){
 	//disableTrans = confirm('Changing transparency settings will erase existing artwork. Do you wish to proceed?');
-	if(disableTrans){
+	//if(disableTrans){
 		backgroundAlphaLayers.length = 0;
 		backgroundLayers.length = 0;
 		backgroundColor = 'white';
@@ -663,7 +668,7 @@ function disableTranparency(){
 		enableTrans = false;
 		pencilDraw = true;
 		console.log("dis",enableTrans,disableTrans);
-	}
+	//}
 }
 /*function toolDisplay(){
 if(fill){
@@ -683,7 +688,7 @@ function onColorClick(color) {
 		globalAlpha = alpha;
 		context.fillStyle = backgroundColor;
 		console.log(backgroundLayers, backgroundAlphaLayers);
-		context.fillRect(0,0,context.canvas.width, context.canvas.height)
+		context.fillRect(0,0,context.canvas.width, context.canvas.height);
 		changeBackground = false;
 		context.fillStyle = zcolor;}
 	else{
@@ -704,8 +709,8 @@ function onColorClick(color) {
 	}
 }
 function reloadBackground(x,y,w,h){
-	var xalpha = alpha;
-	var ycolor = lastColor;
+	//var xalpha = alpha;
+	//var ycolor = lastColor;
 	for(var i=0;  i < backgroundLayers.length; i++){
 	//for(let value of backgroundLayers){
 	//backgroundLayers.forEach(function(value){
@@ -742,10 +747,8 @@ function onMouseDown(e) {
 		y1 = e.pageY - ffyoffset;
 	}
 	else if (e.clientX || ev.clientY) 	{
-		x1 = e.clientX + document.body.scrollLeft
-			+ document.documentElement.scrollLeft - ffxoffset;
-		y1 = e.clientY + document.body.scrollTop
-			+ document.documentElement.scrollTop - ffyoffset;
+		x1 = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - ffxoffset;
+		y1 = e.clientY + document.body.scrollTop + document.documentElement.scrollTop - ffyoffset;
 	}
 	console.log("yo",x1,y1);
 	if (brushSelect == "fountainPen" || "NP1"){bzPoints.push({bzX:x1,bzY:y1});}
@@ -753,23 +756,14 @@ function onMouseDown(e) {
 	return x1,y1;
 }
 function onTouchStart(e){
-	if (!e) var e = window.event;
-	if (e.touches.length == 1){
-		var touch = e.touches[0];
-		x1 = touch.pageX-touch.target.ffxoffset;
-		y1 = touch.pageY-touch.target.ffyoffset;
-	}
+	getTouchCoords(e);
 	if (brushSelect == "fountainPen" || "NP1"){bzPoints.push({bzX:x1,bzY:y1});}
 	old = {oldX: x1,oldY: y1};
+	event.preventDefault();
 	return x1,y1;
 }
 function onTouchEnd(e){
-	if (!e) var e = window.event;
-		if (e.touches.length == 1){
-		var touch = e.touches[0];
-		x1 = touch.pageX-touch.target.ffxoffset;
-		y1 = touch.pageY-touch.target.ffyoffset;
-	}
+	getTouchCoords(e);
 	if(brushSelect == "noBrush" && (otherTools == "move" || otherTools == "copy" || otherTools == "delete" || otherTools == "rect" || otherTools == "circ" || otherTools == "line" )){
 		selectTool(x1,y1,x2,y2,x3,y3);
 	} else if(brushSelect == "noBrush" && otherTools == "qCurve"){
@@ -795,10 +789,8 @@ function onMouseUp(e) {
 		y2 = e.pageY - ffyoffset;
 	}
 	else if (e.clientX || ev.clientY) 	{
-		x2 = e.clientX + document.body.scrollLeft
-			+ document.documentElement.scrollLeft - ffxoffset;
-		y2 = e.clientY + document.body.scrollTop
-			+ document.documentElement.scrollTop - ffyoffset;
+		x2 = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - ffxoffset;
+		y2 = e.clientY + document.body.scrollTop + document.documentElement.scrollTop - ffyoffset;
 	}
 	console.log("blah",x2,y2);
 
@@ -832,7 +824,7 @@ function rectTool(int, int,int,int){
 	
 	
 }
-function circTool(int,int, int, int){
+function circTool(/*int,int, int, int*/){
 	context.closePath();
 	context.beginPath();
 	context.globalAlpha = alpha;
@@ -843,7 +835,7 @@ function circTool(int,int, int, int){
 			context.fill();
 		} else {context.stroke();}
 }
-function lineTool (int,int,int,int){
+function lineTool (/*int,int,int,int*/){
 	context.closePath();
 	context.beginPath();
 	context.globalAlpha = alpha;
@@ -856,7 +848,7 @@ function lineTool (int,int,int,int){
 	console.log("line");
 	
 }
-function selectTool(int,int, int, int){
+function selectTool(/*int,int, int, int*/){
 	//imgData = null;
 	imgData=context.getImageData(x1,y1,Math.abs(x2-x1),Math.abs(y2-y1));
 	/*canvas.addEventListener('dblclick', onDoubleClick, false);
@@ -947,10 +939,8 @@ function moveSelection(){
 				y4 = e.pageY - ffyoffset;
 				}
 			else if (e.clientX || ev.clientY) 	{
-				x4 = e.clientX + document.body.scrollLeft
-				+ document.documentElement.scrollLeft - ffxoffset;
-				y4 = e.clientY + document.body.scrollTop
-				+ document.documentElement.scrollTop - ffyoffset;
+				x4 = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - ffxoffset;
+				y4 = e.clientY + document.body.scrollTop + document.documentElement.scrollTop - ffyoffset;
 			}		
 			/*	if (e.layerX >=0) {
 					x4 = e.layerX - wkxoffset;
@@ -999,10 +989,8 @@ function copySelection(/*imgData, int, int,int,int*/){
 				y4 = e.pageY - ffyoffset;
 				}
 			else if (e.clientX || ev.clientY) 	{
-				x4 = e.clientX + document.body.scrollLeft
-				+ document.documentElement.scrollLeft - ffxoffset;
-				y4 = e.clientY + document.body.scrollTop
-				+ document.documentElement.scrollTop - ffyoffset;
+				x4 = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - ffxoffset;
+				y4 = e.clientY + document.body.scrollTop + document.documentElement.scrollTop - ffyoffset;
 			}
 			/*	if (e.layerX >=0) {
 					x4 = e.layerX - wkxoffset;
@@ -1062,10 +1050,8 @@ function qCurveTool (int,int,int,int) {
 				y3 = e.pageY - ffyoffset;
 				}
 			else if (e.clientX || ev.clientY) 	{
-				x3 = e.clientX + document.body.scrollLeft
-				+ document.documentElement.scrollLeft - ffxoffset;
-				y3 = e.clientY + document.body.scrollTop
-				+ document.documentElement.scrollTop - ffyoffset;
+				x3 = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - ffxoffset;
+				y3 = e.clientY + document.body.scrollTop + document.documentElement.scrollTop - ffyoffset;
 			}
 	/*if (e.layerX >=0) {
 		x3 = e.layerX - wkxoffset;
