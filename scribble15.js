@@ -254,9 +254,9 @@ function getTouchCoords(e){
 function onTouchMove (ev) {
 	//var x,y;
 	getTouchCoords(e)
-	iselectBrush(x,y);
+	selectBrush(x,y);
 	drawDot(context,x,y,12);
-	event.preventDefault();
+	//event.preventDefault();
 }
 
 function selectBrush(x,y){	
@@ -776,7 +776,7 @@ function onTouchStart(e){
 	getTouchCoords();
 	if (brushSelect == "fountainPen" || "NP1"){bzPoints.push({bzX:x1,bzY:y1});}
 	old = {oldX: x1,oldY: y1};
-	event.preventDefault();
+	//event.preventDefault();
 	return x1,y1;
 }
 function onTouchEnd(e){
