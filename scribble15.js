@@ -174,11 +174,11 @@ function matchMed(mM){
         // Select a fill style
         ctx.fillStyle = color;
 	ctx.globalAlpha = alpha;
-	 ctx. lineWidth = thickness;
+	 //ctx. lineWidth = thickness;
 
         // Draw a filled circle
         ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI*2, true); 
+        ctx.arc(x, y, Number(thickness), 0, Math.PI*2, true); 
         ctx.closePath();
         ctx.fill();
     } 
