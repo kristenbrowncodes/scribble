@@ -172,7 +172,7 @@ function matchMed(mM){
         r=0; g=0; b=0; a=255;
 
         // Select a fill style
-        ctx.fillStyle = color;
+        ctx.fillStyle = 'purple';
 	ctx.globalAlpha = alpha;
 	 //ctx. lineWidth = thickness;
 
