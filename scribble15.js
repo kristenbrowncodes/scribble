@@ -69,13 +69,13 @@ function init() {
 	canvas.addEventListener('mousedown', function(e) { onMouseDown(e);enableDraw = true;}, false);
 	canvas.addEventListener('mouseup', function(e) { onMouseUp(e); enableDraw = false; started = false;}, false);
 	canvas.addEventListener('mouseleave', function(e) { enableDraw = false; started = false;}, false);
-	document.addEventListener('touchmove', function(e) {onTouchMove();  e.preventDefault();}, { passive: false });
+	//document.addEventListener('touchmove', function(e) {onTouchMove();  e.preventDefault();}, { passive: false });
 	
-	//canvas.addEventListener('touchmove', onTouchMove, false);
-	//canvas.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true;}, false);
-	//canvas.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;}, false);
-	document.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true; e.preventDefault();}, { passive: false });
-	document.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;e.preventDefault();}, { passive: false });
+	canvas.addEventListener('touchmove', onTouchMove, false);
+	canvas.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true;}, false);
+	canvas.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;}, false);
+	//document.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true; e.preventDefault();}, { passive: false });
+	//document.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;e.preventDefault();}, { passive: false });
 	$('body').bind('touchmove', function(e){e.preventDefault()}); 
 	$('#darkred').get(0).addEventListener('click', function(e) {
 	  onColorClick(e.target.id);}, false);
