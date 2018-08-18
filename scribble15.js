@@ -72,8 +72,10 @@ function init() {
 	canvas.addEventListener('touchmove', function(e) {onTouchMove();  e.preventDefault();}, { passive: false });
 	
 	//canvas.addEventListener('touchmove', onTouchMove, false);
-	canvas.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true;}, false);
-	canvas.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;}, false);
+	//canvas.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true;}, false);
+	//canvas.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;}, false);
+	canvas.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true; e.preventDefault();}, { passive: false });
+	canvas.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;e.preventDefault();}, { passive: false });
 	
 	$('#darkred').get(0).addEventListener('click', function(e) {
 	  onColorClick(e.target.id);}, false);
