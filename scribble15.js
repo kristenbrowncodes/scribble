@@ -229,8 +229,8 @@ function getTouchCoords(e){
 	if(e.touches){
 	if(e.touches.length == 1){
 		var touch = e.touches[0];
-		x = touch.pageX - touch.target.ffxoffset;
-		y = touch.pageY - touch.target.ffyoffset;
+		x = touch.pageX - touch.target.offsetLeft;
+		y = touch.pageY - touch.target.ffyoffTop;
 	}
 }
 }
@@ -756,14 +756,14 @@ function onMouseDown(e) {
 	return x1,y1;
 }
 function onTouchStart(e){
-	getTouchCoords(e);
+	getTouchCoords();
 	if (brushSelect == "fountainPen" || "NP1"){bzPoints.push({bzX:x1,bzY:y1});}
 	old = {oldX: x1,oldY: y1};
 	event.preventDefault();
 	return x1,y1;
 }
 function onTouchEnd(e){
-	getTouchCoords(e);
+	getTouchCoords();
 	if(brushSelect == "noBrush" && (otherTools == "move" || otherTools == "copy" || otherTools == "delete" || otherTools == "rect" || otherTools == "circ" || otherTools == "line" )){
 		selectTool(x1,y1,x2,y2,x3,y3);
 	} else if(brushSelect == "noBrush" && otherTools == "qCurve"){
