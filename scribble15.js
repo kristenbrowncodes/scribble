@@ -232,7 +232,7 @@ function getTouchCoords(e){
 		x = touch.pageX - touch.target.offsetLeft;
 		y = touch.pageY - touch.target.ffyoffTop;
 	}
-}
+} return x,y
 }
 
 function onTouchMove (ev) {
