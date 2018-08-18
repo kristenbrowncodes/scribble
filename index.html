@@ -6,7 +6,7 @@
 		<style type="text/css">
 		/*https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/*/
 
-/*
+
 .enableT {
   position: relative;
   display: block;
@@ -20,7 +20,7 @@ label.switch.enableT {
 display: block;
  z-index: 1;
 /*background-color: aliceblue;*/
-/*color: darkblue;
+color: darkblue;
 margin-top: 6px;
   margin-left: 30px;
 float: left;
@@ -38,12 +38,12 @@ float: left;
   background-color: lightblue;
   /* box-shadow: 1px 1px 1px darkblue, 0px 0px 1px #0d0d0d;
   border: 1px solid darkblue;*/
- /* -webkit-transition: .4s;
+  -webkit-transition: .4s;
   transition: .4s;
 }
 
 .slider.round:before {
-  position: absolute;
+  position: absolute ;
   content: "";
   height: 12px;
   width: 12px;
@@ -72,7 +72,7 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/*.slider.round {
+.slider.round {
   border-radius: 21px;
 
 }
@@ -92,8 +92,9 @@ input:checked + .slider:before {
   padding-right: 20px;
   padding-top: 8px;
   padding-bottom: 9px;
-  margin-top: -10px;
+  margin-top: -7px;
   margin-left: -30px;
+  float: left;
 }		
    input[type=range]{
     -webkit-appearance: none;
@@ -125,11 +126,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   background: azure;
   cursor: pointer;
   margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-/*  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
 }
 
 /* All the same stuff for Firefox */
-/*input[type=range]::-moz-range-track {
+input[type=range]::-moz-range-track {
     width: 160px;
     height: 4px;
     background: lightblue;
@@ -150,7 +151,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 /* All the same stuff for IE */
-/*input[type=range]::-ms-thumb {
+input[type=range]::-ms-thumb {
   box-shadow: 1px 1px 1px darkblue, 0px 0px 1px #0d0d0d;
   border: 1px solid darkblue;
   height: 8px;
@@ -161,18 +162,18 @@ input[type=range]::-moz-range-thumb {
 }
 input[type=range]::-ms-track {
    /* width: 160px;*/
- /*  width: 100%;
+   width: 100%;
     height: 4px;
     
     /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
-  /*  background: transparent;
+    background: transparent;
     
     /*leave room for the larger thumb to overflow with a transparent border */
-   /* border-color: transparent;
+    border-color: transparent;
     border-width: 6px 0;
 
     /*remove default tick marks*/
-  /*  color: transparent;
+    color: transparent;
 }
 input[type=range]::-ms-fill-lower {
     background: darkblue;
@@ -180,7 +181,7 @@ input[type=range]::-ms-fill-lower {
 }
 input[type=range]::-ms-fill-upper {
     background: lightblue;
-    border-radius: 1px;*/
+    border-radius: 1px;
 }
 			a { text-decoration: none; display:block;}
 			#imageView {margin: 0px; border: 4px solid aliceblue;background-color: white;}
@@ -191,16 +192,16 @@ input[type=range]::-ms-fill-upper {
 				height: 100%;
 				margin: 0px;
 			}
-			/*.opacity, .lineThickness, .enableT, .switch.enableT { color: darkblue;  background-color: aliceblue;  padding-left: 5px; padding-right: 5px; padding-top: 5px;padding-bottom: 5px; margin-bottom: 0px; margin-top: 0px;float:left;  font-family: Candara, Helvetica, sans-serif; font-size: 75%; /*text-align: right; */   /* -webkit-user-select: none;
+			.opacity, .lineThickness, .enableT, .switch.enableT { color: darkblue;  background-color: aliceblue;  padding-left: 1px; padding-right: 5px; padding-top: 5px;padding-bottom: 5px; margin-bottom: 0px; margin-top: 0px;float:left;  font-family: Candara, Helvetica, sans-serif; font-size: 75%; /*text-align: right; */    -webkit-user-select: none;
 			 -moz-user-select: none;
-    -ms-user-select: none;*/
-    }*/
-	.opacity{margin-left: 39px;*/		}	
+    -ms-user-select: none;
+    }
+	.opacity{margin-left: 39px;		}	
 			#paint{color: darkblue; background-color: aliceblue; margin-bottom: 0px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
    }
-			#toolbar,  #ope,#save, #clear, #cPen, #eTrans, #dTrans, #widen, #narrow, #lAlpha, #rAlpha, #select, #scatRect, #scatCirc, #spray2,#rect, #bc, #circ, #line, #qCurve, #fill, #stroke, #move, #copy, #delete {border: 1px lightblue; border-style:solid none none none; color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
+			#toolbar,  #ope,#save, #clear, #lBrush, #cHatch, #cPen, #eTrans, #dTrans, #widen, #narrow, #lAlpha, #rAlpha, #select, #scatRect, #scatCirc, #spray2,#rect, #bc, #circ, #line, #qCurve, #fill, #stroke, #move, #copy, #delete {border: 1px lightblue; border-style:solid none none none; color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
 			 -moz-user-select: none;
     -ms-user-select: none;
     }
@@ -208,13 +209,13 @@ input[type=range]::-ms-fill-upper {
     -moz-user-select: none;
     -ms-user-select: none;
    }
-	 #scatRect:active, #scatCirc:active, #cPen:active, #save:active, #paint:active, #spray2:active,#rect:active, #circ:active, #line:active, #qCurve:active { background-color: lightblue;}
+	 #scatRect:active, #scatCirc:active, #lBrush:active, #cHatch:active, #cPen:active, #save:active, #paint:active, #spray2:active,#rect:active, #circ:active, #line:active, #qCurve:active { background-color: lightblue;}
 			#toolbar {border:none}
 			#container {position: relative;}
 		
 		</style>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-	<script type="text/javascript" src="scribble12.js"></script>
+	<script type="text/javascript" src="scribble15.js"></script>
 	<script type="text/javascript" src="init.js"></script>
 	</head>
 	<body>
@@ -251,7 +252,7 @@ input[type=range]::-ms-fill-upper {
 				<div id="circ" title="Circle Tool" style="width:38px; height:16px; float:left;">Circ</div><div style="clear: both;"></div>
 				<div id="scatRect" title="Square Brush" style="width:38px; height:16px; float:left;">SB</div><div style="clear: both;"></div>
 				<div id="scatCirc" title="Circle Brush" style="width:38px; height:16px; float:left;">CB</div><div style="clear: both;"></div>
-				<div id="qCurve" title="Quadratic Curve Tool &#13Double click for control point, then click and drag from start point to end point" style="width:38px; height:16px; float:left;">QC</div><div style="clear: both;"></div>
+				<div id="qCurve" title="Quadratic Curve Tool &#13;Double click for control point, then click and drag from start point to end point" style="width:38px; height:16px; float:left;">QC</div><div style="clear: both;"></div>
 		<!--		<div id="widen" title="Increase Stroke Width" style="width:38px; height:16px; float:left;"> &gt </div><div style="clear: both;"></div>
 				<div id="narrow" title="Decrease Stroke Width" style="width:38px; height:16px; float:left;"> &lt </div><div style="clear: both;"></div>
 				<div id="rAlpha" title="Increase Opacity" style="width:38px; height:16px; float:left;"> A+ </div><div style="clear: both;"></div>
@@ -265,10 +266,15 @@ input[type=range]::-ms-fill-upper {
 				<a id="save" download="Canvas.png" href="#">Save</a>
 				<!--<div id="save" style="width:36px; height:16px; float:left;">Save</div><div style="clear: both;"></div>-->
 				<div id="clear" title="Erase entire Page" style="width:36px; height:16px; float:left;">Clear</div><div style="clear: both;"></div>
-				<div id="bc" title="Change background color&#13(will cover previous artwork at full opacity)" style="width:38px; height:16px; float:left;">BC</div><div style="clear: both;"></div>
-				<div id="eTrans" title="Enable transparency in final artwork" style="width:38px; height:16px; float:left;">ET</div><div style="clear: both;"></div>
-				<div id="dTrans" title="Disable transparency in final artwork&#13(Image wil have opaque white background behind any transparent objects or backgrounds)" style="width:38px; height:16px; float:left;">DT</div><div style="clear: both;"></div>
-				<div id="cPen" title="Calligraphy Pen Brush" style="width:38px; height:16px; float:left;">Cal</div><div style="clear: both;"></div>
+				<div id="bc" title="Change background color&#13;(will cover previous artwork at full opacity)" style="width:38px; height:16px; float:left;">BC</div><div style="clear: both;"></div>
+				<!--<div id="eTrans" title="Enable transparency in final artwork" style="width:38px; height:16px; float:left;">ET</div><div style="clear: both;"></div>
+				<div id="dTrans" title="Disable transparency in final artwork&#13(Image wil have opaque white background behind any transparent objects or backgrounds)" style="width:38px; height:16px; float:left;">DT</div><div style="clear: both;"></div>-->
+				<div id="lBrush" title="Slanted Lines Brush" style="width:38px; height:16px; float:left;">LB</div><div style="clear: both;"></div>
+				<div id="cHatch" title="Cross-Hatching Brush" style="width:38px; height:16px; float:left;">CH</div><div style="clear: both;"></div>
+				<div id="fPen" title="Cross-Hatching Brush" style="width:38px; height:16px; float:left;">FP</div><div style="clear: both;"></div>
+				<div id="pen3" title="Cross-Hatching Brush" style="width:38px; height:16px; float:left;">SlantP</div><div style="clear: both;"></div>
+				<div id="NP1" title="Cross-Hatching Brush" style="width:38px; height:16px; float:left;">NP1</div><div style="clear: both;"></div>
+				<div id="NP2" title="Cross-Hatching Brush" style="width:38px; height:16px; float:left;">NP2</div><div style="clear: both;"></div>
 
 				
 			</div> 
@@ -284,13 +290,13 @@ input[type=range]::-ms-fill-upper {
 					href="http://www.konqueror.org">Konqueror</a>.</p>
 				</canvas>        
 			</div>
-		<div id="stats" style="font-size:8pt; padding-right: 30px; color:darkblue; font-family: sans-serif; float: right; z-index: 3;">0 0</div>        
+		<div id="stats" style="font-size:8pt; padding-right: 5px; color:darkblue; font-family: sans-serif; float: right; z-index: 3;">0 0</div>        
   
  			<!--		<form id="ope" action="/action_page.php" method="get">
            opacity
            <input type="range" name="points" min="1" max="10">  
         </form>-->
-<!--
+
 		<form class="opacity">
     <label for="alpha1">Opacity</label>
     <input type="range" min="1" max="10" value="10" id="alpha1" step="1" onclick="opacitySlider(value)">
@@ -300,7 +306,7 @@ input[type=range]::-ms-fill-upper {
     <label for="thickness1">    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stroke Width</label>
     <input type="range" min="1" max="40" value="2" id="thickness1" step="1" onclick="strokeWidthSlider(value)">
     <output for="thickness1" id="lineThickness">2</output>
-</form>-->
+</form>
 
 <!--</form>
 			<form class="transparency">
@@ -308,11 +314,11 @@ input[type=range]::-ms-fill-upper {
     <input type="range" min="0" max="1" value="0" id="trans1" step="1" oninput="enableTranparencySlider(value)">
     <output for="trans1" id="ET"></output>
 </form>-->
-<!--
+
 <label class="switch enableT">
   <input id="transCheck" type="checkbox" title="Enable transparency in final artwork (if disabled, image will have opaque white background behind any transparent objects or backgrounds)" onclick="getTrans(value)"> 
-<span class="slider round"</span>
-  </label>-->
+<span class="slider round" </span>
+  </label>
 
 <!--<label for="flip-1">Enable Transparency</label>
 <select name="flip-1" id="flip-1" data-role="slider">
