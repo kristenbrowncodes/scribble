@@ -173,7 +173,7 @@ function matchMed(mM){
 
         // Select a fill style
        // ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
-	// ctx.fillStyle = color;
+	 ctx.fillStyle = lastColor;
 	ctx.globalAlpha = alpha;
 	 ctx. lineWidth = thickness;
 
