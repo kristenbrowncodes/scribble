@@ -172,9 +172,10 @@ function matchMed(mM){
         r=0; g=0; b=0; a=255;
 
         // Select a fill style
-        ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
-	//ctx.globalAlpha = alpha;
-	 //ctx. lineWidth = thickness;
+       // ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
+	 ctx.fillStyle = color;
+	ctx.globalAlpha = alpha;
+	 ctx. lineWidth = thickness;
 
         // Draw a filled circle
         ctx.beginPath();
