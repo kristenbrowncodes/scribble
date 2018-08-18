@@ -76,7 +76,7 @@ function init() {
 	//canvas.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;}, false);
 	document.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true; e.preventDefault();}, { passive: false });
 	document.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;e.preventDefault();}, { passive: false });
-	
+	$('body').bind('touchmove', function(e){e.preventDefault()}); 
 	$('#darkred').get(0).addEventListener('click', function(e) {
 	  onColorClick(e.target.id);}, false);
 	$('#coral').get(0).addEventListener('click', function(e) {
