@@ -167,6 +167,19 @@ function matchMed(mM){
 		
 	}
 }
+ function drawDot(ctx,x,y,size) {
+        // Let's use black by setting RGB values to 0, and 255 alpha (completely opaque)
+        r=0; g=0; b=0; a=255;
+
+        // Select a fill style
+        ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
+
+        // Draw a filled circle
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI*2, true); 
+        ctx.closePath();
+        ctx.fill();
+    } 
 function clearPage (){
 	
 	context.clearRect(0,0,context.canvas.width, context.canvas.height);
@@ -241,7 +254,8 @@ function getTouchCoords(e){
 function onTouchMove (ev) {
 	//var x,y;
 	getTouchCoords(e)
-	selectBrush(x,y);
+	iselectBrush(x,y);
+	drawDot(context,x,y,12);
 	event.preventDefault();
 }
 
