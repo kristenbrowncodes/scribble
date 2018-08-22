@@ -199,7 +199,8 @@ function matchMed(mM){
         context.fill();
     } 
 function clearPage (){
-	
+	var chooseClear = confirm('Are you sure you wish to completely clear the canvas of art (background will remain)?');
+	if(chooseClear){
 	context.clearRect(0,0,context.canvas.width, context.canvas.height);
 	var xcolor = lastColor;
 	xalpha = alpha;
@@ -213,7 +214,7 @@ function clearPage (){
 	w = context.canvas.width;
 	h = context.canvas.height;
 	reloadBackground(0,0, w, h);
-	context.fillStyle = xcolor;
+	context.fillStyle = xcolor;}
 	//} else {clearTrans();}
 }
 function clearTrans(){
@@ -268,7 +269,9 @@ function getTouchCoords(e){
 	}
 } 
 lastMove = e;
+e.preventDefault();
 return x,y
+	
 }
 
 function onTouchMove (e) {
