@@ -87,7 +87,7 @@ function init() {
 	canvas.addEventListener('mouseleave', function(e) { enableDraw = false; started = false;}, false);
 	//document.addEventListener('touchmove', function(e) {onTouchMove();  e.preventDefault();}, { passive: false });
 	
-	canvas.addEventListener('touchmove', onTouchMove, { passive: false },false);
+	canvas.addEventListener('touchmove', onTouchMove, { passive: false });
 	canvas.addEventListener('touchstart', onTouchStart, false);
 	//canvas.addEventListener('touchstart', function(e) {onTouchStart(); enableDraw = true;}, false);
 	canvas.addEventListener('touchend', function(e) {onTouchEnd(); enableDraw = false; started = false;}, false);	
