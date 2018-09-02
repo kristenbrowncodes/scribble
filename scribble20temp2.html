@@ -1,0 +1,519 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
+		<title>SCRIBBLE!</title>
+		<style type="text/css">
+		/*https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/*/
+.brush-slider {
+position: relative;
+/*font-size:85%;
+text-align: center;*/
+}
+.brush-slider .slider-brush-parent {
+/*height: 70vh;*/
+max-width: 300px;
+width: 450%;
+background: aliceblue;
+position: absolute;
+/*font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;*/
+left: -250px;
+top: 0px;
+visibility:hidden;
+float:none; clear:none;
+opacity: 0;
+pointer-events: none;
+transition: .2s all linear;
+}
+
+.brush-slider .slider-brush-parent.active {
+visibility: visible;
+pointer-events: inherit;
+z-index:5;
+transition: .2s all ease-in-out;
+opacity:1;
+left: 50px;
+}
+.brush-slider .brush-slider-trigger{color: darkblue; background-color: aliceblue; padding-top: 5px; padding-bottom:5px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center; width: 100%, height: 30px;float:left; clear:both;}
+.enableT {
+  position: relative;
+  float:left;
+  display: block;
+  width: 18px;
+  height: 4px;
+  padding-top: 10px;
+  
+  
+}
+
+/*try shape*/
+.shape-slider {
+position: relative;
+float:left;
+clear:both;
+/*font-size:85%;
+text-align: center;*/
+}
+.shape-slider .slider-shape-parent {
+/*height: 70vh;*/
+max-width: 300px;
+width: 180%;
+background: aliceblue;
+position: absolute;
+/*font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;*/
+left: -250px;
+top: 0px;
+visibility:hidden;
+float:none; clear:none;
+opacity: 0;
+pointer-events: none;
+transition: .2s all linear;
+}
+
+.shape-slider .slider-shape-parent.active {
+visibility: visible;
+pointer-events: inherit;
+z-index:6;
+transition: .2s all ease-in-out;
+opacity:1;
+left: 50px;
+}
+.shape-slider .shape-slider-trigger{color: darkblue; background-color: aliceblue; font-family: Candara, Helvetica, sans-serif; border-top: 1px solid lightblue; padding-top: 5px; padding-bottom:5px; font-size: 85%; text-align: center; width: 100%, height: 30px;float:left; clear:both;}
+.enableT {
+  position: relative;
+  float:left;
+  display: block;
+  width: 18px;
+  height: 4px;
+  padding-top: 10px;
+  
+  
+}
+.column { float: left; width: 33%;}
+label.switch.enableT {
+display: block;
+ z-index: 1;
+/*background-color: aliceblue;*/
+color: darkblue;
+margin-top: 6px;
+  margin-left: 30px;
+float: left;
+}
+
+.enableT input {display:none;}
+
+.slider.round {
+  position: absolute;
+  cursor: pointer;
+  top: 1px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightblue;
+  /* box-shadow: 1px 1px 1px darkblue, 0px 0px 1px #0d0d0d;
+  border: 1px solid darkblue;*/
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider.round:before {
+  position: absolute ;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: -3px;
+  bottom: 0px;
+  background-color: aliceblue;
+   box-shadow: 1px 1px 1px darkblue, 0px 0px 1px #0d0d0d;
+  border: 1px solid darkblue;
+  
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: darkblue;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 21px;
+
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.slider::after {
+  position:relative;
+  z-index: -1;
+  display: inline-block;
+  right:1px;
+  background-color: aliceblue;
+  white-space: nowrap;
+  content: "Enable Transparency";
+  padding-left: 75px;
+  padding-right: 20px;
+  padding-top: 12px;
+  padding-bottom: 5px;
+  margin-top: -35px;
+  margin-left: -30px;
+  margin-bottom: 0px;
+  float: none; clear:none;
+}		
+   input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: darkblue;
+    border: none;
+    border-radius: 3px;
+}
+
+
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: darkblue;
+}
+	input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid darkblue;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: azure;
+  cursor: pointer;
+  margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-track {
+    width: 160px;
+    height: 4px;
+    background: lightblue;
+    border: none;
+    border-radius: 3px;
+}
+input[type="range"]::-moz-range-progress {
+  background-color: darkblue; 
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px darkblue, 0px 0px 1px #0d0d0d;
+  border: 1px solid darkblue;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: azure;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px darkblue, 0px 0px 1px #0d0d0d;
+  border: 1px solid darkblue;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: azure;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+   /* width: 160px;*/
+   width: 100%;
+    height: 4px;
+    
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: darkblue;
+    border-radius: 1px;
+}
+input[type=range]::-ms-fill-upper {
+    background: lightblue;
+    border-radius: 1px;
+}
+			a { text-decoration: none; display:block;}
+			#imageView {margin: 0px; border: 4px solid aliceblue;background-color: white;z-index:0;}
+			#image2View {margin: 0px; border: 4px dashed darkblue;background-color: transparent;z-index:1;}
+			html, body {
+				background: linear-gradient(to bottom , aliceblue, lightblue);
+				z-index:-2
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+			}
+			
+}
+.footer{position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%; }
+   
+   @media only screen and (min-width:765px){li{ display:inline;z-index:6;  }.footer2{display: none;}}
+  @media only screen and (max-width:764px) {li{ display:block;float:left;clear both ;z-index:6;  } .footer{display: none;}.opacity, .lineThickness, .enableT, .switch.enableT{ color: darkblue;  background-color: aliceblue;  padding-left: 1px; padding-right: 5px; padding-top: 5px;padding-bottom: 5px; margin-bottom: 0px; margin-top: 5px;float:left; /*clear:both;*/ font-family: Candara, Helvetica, sans-serif; font-size: 75%; /*text-align: right; */    -webkit-user-select: none;
+			 -moz-user-select: none;
+    -ms-user-select: none;
+    }}
+  
+  ul{list-style-type:none;}
+			/*.opacity, .lineThickness, .enableT, .switch.enableT,*/ li { color: darkblue;  background-color: aliceblue;  padding-left: 1px; padding-right: 5px; padding-top: 5px;padding-bottom: 5px; margin-bottom: 0px; margin-top: 5px;float:left; /*clear:both;*/ font-family: Candara, Helvetica, sans-serif; font-size: 75%; /*text-align: right; */    -webkit-user-select: none;
+			 -moz-user-select: none;
+    -ms-user-select: none;
+    }
+	
+	.opacity, lineThickness {/*margin-left: 150px;	z-index:0;*/	}	
+	.enableT{margin-left: 150px;z-index:5;}
+			#paint{color: darkblue; background-color: aliceblue; margin-bottom: 0px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+   }
+			#toolbar,  #ope,#save, #grad, #paint, #undo, #line2, #bubbles, #redo, #eraser,#pen4, #pen5,#pen6, #pen7, #geo2, #geo3,#NP1,#NP2, #clear, #lBrush, #cHatch, #cPen, #fPen, #pen3, #NP1, #NP2, #eTrans, #dTrans, #widen, #narrow, #lAlpha, #rAlpha, #select, #scatRect, #scatCirc, #spray2,#rect, #bc, #circ, #line, #qCurve, #fill, #stroke, #move, #copy, #delete {border: 1px lightblue; border-style:solid none none none; color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
+			 -moz-user-select: none;
+    -ms-user-select: none;
+    }
+	#toolbar {float: left; clear:both;}		/* #paint{color: darkblue; background-color: aliceblue; margin-bottom: 0px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+   }*/
+	 #scatRect:active, #scatCirc:active, #fill:active, #grad:active, #stroke:active, #move:active, #copy:active, #delete:active, #clear:active, #bc:active, #NP1:active, #NP2:active, #lBrush:active, #cHatch:active, #fPen:active, #save:active, #paint:active, #spray2:active,#rect:active, #circ:active, #line:active, #qCurve:active { background-color: lightblue;}
+			#toolbar {border:none}
+			#container {position: relative;}
+		
+		</style>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="scribble20temp2.js"></script>
+	<script type="text/javascript" src="init.js"></script>
+	</head>
+	<body>
+		<div id="container" style="padding:5px 0px 0px 0px; ">
+			<div id="colorToolbar" style="/*border: 0px solid dark blue;*/ /*float: top;*/">
+				<div id="darkred" style="background:darkred; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="crimson" style="background:crimson; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="orangered" style="background:orangered; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="coral" style="background:coral; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="orange" style="background:orange; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				
+				<div id="yellow" style="background:yellow; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="greenyellow" style="background:greenyellow; width:38px; height:30px; float:left;"></div><div style="clear:top;"></div>
+				<div id="mediumseagreen" style="background:mediumseagreen; width:38px; height:30px; float:left;"></div><div style="clear:top;"></div>	
+				<div id="darkcyan" style="background:darkcyan; width:38px; height:30px; float:left;"></div><div style="clear:top;"></div>	
+				<div id="royalblue" style="background:royalblue; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="mediumblue" style="background:mediumblue; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="navy" style="background:navy; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>				
+				<div id="indigo" style="background:indigo; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>	
+				<div id="purple" style="background:purple; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="mediumvioletred" style="background:mediumvioletred; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="orchid" style="background:orchid; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="white" style="background:white; width:38px; height:30px; float:left;"></div><div style="clear:top;"></div>				
+				<div id="black" style="background:black; width:38px; height:30px; float:left;"></div><div style="clear: top;"></div>
+				<div id="transparent" style="background:white; color:red; text-align:center; vertical-align:middle; line-height:30px; font-size: 200%; width:30px; height:30px; float:left;">&#xd7;</div><div style="clear: top;"></div>				
+				<div id="showColor" style="background:white; color:red; text-align:center; border: 4px solid black; width:30px; height:22px; float:right; margin-right:15px;">&#xd7;</div><div style="clear: both;"></div>
+				<!--<div id="blankCanvas" style="background:white; width:canvas.width - 30px; float: right;"></div> -->
+				</div>
+			<div id="toolbar" >
+			<div class="brush-slider"  >
+			<a href="#" class="brush-slider-trigger" >Brush</a>
+			<div class="slider-brush-parent">
+				<div class="column">
+				<div id="paint" title="Drawing Tool" style="width:100%; height:48px; float:left;">Pencil</div><div style="clear: none;"></div>
+				<div id="eraser" title="Erase" style="width:100%; height:48px; float:left;">Eraser</div><div style="clear: both;"></div>
+				<div id="spray2" title="Spray Paint and Blender Tool" style="width:100%; height:48px; float:left;">Spray Paint</div><div style="clear: none;"></div>
+				<div id="scatRect" title="Square Brush" style="width:100%; height:48px; float:left;">Square Brush</div><div style="clear: none;"></div>
+				<div id="scatCirc" title="Circle Brush" style="width:100%; height:48px; float:left;">Circle Brush</div><div style="clear: none;"></div>
+				<div id="lBrush" title="Slanted Lines Brush" style="width:100%; height:48px; float:left;">Line Brush</div><div style="clear: none;"></div>
+				</div>
+				<div class="column">
+				<div id="cHatch" title="Cross-Hatching Brush" style="width:100%; height:48px; float:left;">Cross Hatch</div><div style="clear: none;"></div>
+				<div id="fPen" title="Fountain Pen" style="width:100%; height:48px; float:left;">Fountain Pen</div><div style="clear: none;"></div>
+				<div id="pen3" title="Striped pen" style="width:100%; height:48px; float:left;">Rake</div><div style="clear: none;"></div>
+				
+				<div id="pen4" title="Calligraphy pen" style="width:100%; height:48px; float:right;">Slanted Pen</div><div style="clear: none;"></div>
+			
+				<div id="pen5" title="Fanned out" style="width:100%; height:48px; float:right;">Fan</div><div style="clear: none;"></div>
+				<div id="geo2" title="Corrugated" style="width:100%; height:48px; float:right;">Corrugated</div><div style="clear: none;"></div>	
+					</div>
+				<div class="column">
+				<!--<div id="pen6" title="Mountains" style="width:100%; height:48px; float:right;">Int</div><div style="clear: none;"></div>-->
+				<div id="grad" title="Gradient pattern stamp brush" style="width:100%; height:48px; float:right;">Gradient Brush</div><div style="clear: none;"></div>
+				<div id="pen7" title="Geodesic Neighboring Points tool" style="width:100%; height:48px; float:right;">Geodesic</div><div style="clear: none;"></div>
+				
+				<div id="geo3" title="A geometric neighboring point tool" style="width:100%; height:48px; float:right;">Barbed Wire</div><div style="clear: none;"></div>
+				<div id="NP1" title="Neighboring points tool 1" style="width:100%; height:48px; float:right;">Shading</div><div style="clear: none;"></div>
+				<div id="NP2" title="Neighboring points tool 2" style="width:100%; height:48px; float:right;">Hairnet</div><div style="clear: none;"></div>
+				<div id="bubbles" title="Neighboring points tool 2" style="width:100%; height:48px; float:right;">Bubbles</div><div style="clear: none;"></div>
+				</div>
+			</div>
+			</div>
+			
+			<div class="shape-slider"  >
+			<a href="#" class="shape-slider-trigger" >Shape</a>
+			<div class="slider-shape-parent">
+				<div id="line" title="Straight Line Tool" style="width:100%; height:28px; float:left;">Line</div><div style="clear: both;"></div>
+				<div id="rect" title="Rectangle Tool" style="width:100%; height:28px; float:left;">Rectangle</div><div style="clear: both;"></div>
+				<div id="circ" title="Circle Tool" style="width:100%; height:28px; float:left;">Circle</div><div style="clear: both;"></div>
+				<div id="qCurve" title="Quadratic Curve Tool &#13;Double click for control point, then click and drag from start point to end point" style="width:100%; height:28px; float:left;">Quadratic Curve</div><div style="clear: both;"></div>
+			
+			
+			</div>
+			</div>	
+			<!--	<div id="paint" title="Drawing Tool" style="width:38px; height:28px; float:left;">Draw</div><div style="clear: both;"></div>
+				<div id="line" title="Straight Line Tool" style="width:100%; height:28px; float:left;">Line</div><div style="clear: both;"></div>
+				<!--<div id="spray" title="Spray Paint Tool" style="width:38px; height:16px; float:left;">Spray</div><div style="clear: both;"></div>-->
+			<!--	<div id="spray2" title="Spray Paint Tool" style="width:38px; height:28px; float:left;">Spray</div><div style="clear: both;"></div>
+				<div id="rect" title="Rectangle Tool" style="width:100%; height:28px; float:left;">Rect</div><div style="clear: both;"></div>
+				<div id="circ" title="Circle Tool" style="width:100%; height:28px; float:left;">Circ</div><div style="clear: both;"></div>
+				<!--<div id="scatRect" title="Square Brush" style="width:38px; height:28px; float:left;">SB</div><div style="clear: both;"></div>
+				<div id="scatCirc" title="Circle Brush" style="width:38px; height:28px; float:left;">CB</div><div style="clear: both;"></div>
+				<div id="qCurve" title="Quadratic Curve Tool &#13;Double click for control point, then click and drag from start point to end point" style="width:100%; height:28px; float:left;">QC</div><div style="clear: both;"></div>
+		<!--		<div id="widen" title="Increase Stroke Width" style="width:38px; height:16px; float:left;"> &gt </div><div style="clear: both;"></div>
+				<div id="narrow" title="Decrease Stroke Width" style="width:38px; height:16px; float:left;"> &lt </div><div style="clear: both;"></div>
+				<div id="rAlpha" title="Increase Opacity" style="width:38px; height:16px; float:left;"> A+ </div><div style="clear: both;"></div>
+				<div id="lAlpha" title="Decrease Opacity" style="width:38px; height:16px; float:left;"> A- </div><div style="clear: both;"></div> -->
+				<div id="fill" title="Draw filled shapes and lines" style="width:100%; height:28px; float:left;">Fill</div><div style="clear: both;"></div>
+				<div id="stroke" title="Draw outlined shapes and lines" style="width:100%; height:28px; float:left;">Stroke</div><div style="clear: both;"></div>
+				<!--<div id="select" title="Select a section of canvas to move, copy or delete" style="width:38px; height:16px; float:left;">Select</div><div style="clear: both;"></div>-->
+				<div id="move" title="Click and drag to select area to be moved, then double click destination" style="width:100%; height:28px; float:left;">Move</div><div style="clear: both;"></div>
+				<div id="copy" title="Click and drag to select area to be copied, then double click destination" style="width:100%; height:28px; float:left;">Copy</div><div style="clear: both;"></div>
+				<div id="delete" title="Click and drag to select area to be deleted" style="width:100%; height:28px; float:left;">Del</div><div style="clear: both;"></div>
+				<a id="save" download="Canvas.png" href="#">Save</a>
+				<!--<div id="save" style="width:36px; height:16px; float:left;">Save</div><div style="clear: both;"></div>-->
+				<div id="clear" title="Erase entire Page" style="width:100%; height:28px; float:left;">Clear</div><div style="clear: both;"></div>
+				<div id="bc" title="Change background color&#13;(will cover previous artwork at full opacity)" style="width:100%; height:28px; float:left;">BC</div><div style="clear: both;"></div>
+				<!--<div id="eTrans" title="Enable transparency in final artwork" style="width:38px; height:16px; float:left;">ET</div><div style="clear: both;"></div>
+				<div id="dTrans" title="Disable transparency in final artwork&#13(Image wil have opaque white background behind any transparent objects or backgrounds)" style="width:38px; height:16px; float:left;">DT</div><div style="clear: both;"></div>-->
+			<!--<div id="lBrush" title="Slanted Lines Brush" style="width:38px; height:28px; float:left;">LB</div><div style="clear: both;"></div>
+				<div id="cHatch" title="Cross-Hatching Brush" style="width:38px; height:28px; float:left;">CH</div><div style="clear: both;"></div>
+				<div id="fPen" title="Fountain Pen" style="width:38px; height:28px; float:left;">FP</div><div style="clear: both;"></div>
+				<div id="pen3" title="Slanted pen" style="width:38px; height:28px; float:left;">SlantP</div><div style="clear: both;"></div>
+				<div id="pen4" title="Slanted pen" style="width:38px; height:28px; float:left;">Pen4</div><div style="clear: both;"></div>
+				<div id="pen5" title="Fanned out" style="width:38px; height:28px; float:left;">Fan</div><div style="clear: both;"></div>
+				<div id="pen6" title="Mountains" style="width:38px; height:28px; float:left;">Int</div><div style="clear: both;"></div>
+				<div id="pen7" title="Mountains" style="width:38px; height:28px; float:left;">GeoNP</div><div style="clear: both;"></div>
+				<div id="geo2" title="Mountains" style="width:38px; height:28px; float:left;">Geo2</div><div style="clear: both;"></div>
+				<div id="NP1" title="Neighboring points tool 1" style="width:38px; height:28px; float:left;">NP1</div><div style="clear: both;"></div>
+				<div id="NP2" title="Neighboring points tool 2" style="width:38px; height:28px; float:left;">NP2</div><div style="clear: both;"></div>-->
+				<div id="undo" title="Undo" style="width:100%; height:28px; float:left;">Undo</div><div style="clear: both;"></div>
+				<div id="redo" title="Redo" style="width:100%; height:28px; float:left;">Redo</div><div style="clear: both;"></div>
+				<div id="line2" title="Redo" style="width:100%; height:28px; float:left;">line2</div><div style="clear: both;"></div>
+				<div id="rect2" title="Redo" style="width:100%; height:28px; float:left;">rect2</div><div style="clear: both;"></div>
+				<div id="circ2" title="Redo" style="width:100%; height:28px; float:left;">circ2</div><div style="clear: both;"></div>
+				<div id="draw2" title="Redo" style="width:100%; height:28px; float:left;">draw2</div><div style="clear: both;"></div>
+				<div id="dash" title="Redo" style="width:100%; height:28px; float:left;">Dash</div><div style="clear: both;"></div>
+				<div id="solid" title="Redo" style="width:100%; height:28px; float:left;">Solid</div><div style="clear: both;"></div>
+				<!--<div id="eraser" title="Erase" style="width:100%; height:28px; float:left;">Eraser</div><div style="clear: both;"></div>-->
+
+				
+			</div> 
+			
+			<div id="canvasDiv" style="float: left; clear: both;">
+				<canvas id="imageView" style="z-index: 0;
+					position:absolute;
+					left:50px;
+					top:40px;>
+					<p>Unfortunately, your browser is currently unsupported by our web 
+					application.  We are sorry for the inconvenience. Please use one of the 
+					supported browsers listed below, or draw the image you want using an 
+					offline tool.</p>
+				<p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a 
+					href="http://www.mozilla.com">Firefox</a>, <a 
+					href="http://www.apple.com/safari">Safari</a>, and <a 
+					href="http://www.konqueror.org">Konqueror</a>.</p>
+				</canvas>  
+					<canvas id="image2View"style="z-index: 1;
+						position:absolute;
+						left:50px;
+						top:40px;></canvas>
+			</div>
+		<div id="stats" style="font-size:8pt; padding-right: 5px; color:darkblue; font-family: sans-serif; float: right; clear:both; z-index: 3;">0 0</div>        
+  
+ 			<!--		<form id="ope" action="/action_page.php" method="get">
+           opacity
+           <input type="range" name="points" min="1" max="10">  
+        </form>-->
+</div>
+<div class="footer" style="position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 300%;">
+   <ul>
+
+	<li>	<form class="opacity" style="float:left;/* clear:both;*/">
+    <label for="alpha1">Opacity</label>
+    <input type="range" min="1" max="10" value="10" id="alpha1" step="1" onclick="opacitySlider(value)" onchange="opacitySlider(value)" oninput="opacitySlider(value)">
+    <output for="alpha1" id="opacity">10</output>
+</form></li>
+		<li>	<form class="lineThickness" style="float:left; /*clear:both;*/">
+    <label for="thickness1">    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stroke Width</label>
+    <input type="range" min="1" max="40" value="2" id="thickness1" step="1" onclick="strokeWidthSlider(value)" onchange="strokeWidthSlider(value)" oninput="strokeWidthSlider(value)">
+    <output for="thickness1" id="lineThickness">2</output>
+</form></li>
+<li><label class="switch enableT">
+  <input id="transCheck" type="checkbox" title="Enable transparency in final artwork (if disabled, image will have opaque white background behind any transparent objects or backgrounds)" onclick="getTrans(value)" > 
+<span class="slider round" </span>
+  </label></li>
+</ul>
+</div>
+<div class="footer2" style="position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 300%;">
+   	<form class="opacity" style="float:left; clear:both;">
+    <label for="alpha1">Opacity</label>
+    <input type="range" min="1" max="10" value="10" id="alpha1" step="1" onclick="opacitySlider(value)" onchange="opacitySlider(value)" oninput="opacitySlider(value)">
+    <output for="alpha1" id="opacity">10</output>
+</form>	<form class="lineThickness" style="float:left; clear:both;">
+    <label for="thickness1">    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stroke Width</label>
+    <input type="range" min="1" max="40" value="2" id="thickness1" step="1" onclick="strokeWidthSlider(value)" onchange="strokeWidthSlider(value)" oninput="strokeWidthSlider(value)">
+    <output for="thickness1" id="lineThickness">2</output>
+</form><label class="switch enableT" style="float:left; clear:both;">
+  <input id="transCheck" type="checkbox" title="Enable transparency in final artwork (if disabled, image will have opaque white background behind any transparent objects or backgrounds)" onclick="getTrans(value)" > 
+<span class="slider round" </span>
+  </label>
+</div>
+<!--</form>
+			<form class="transparency">
+    <label for="trans1">    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable Transparency</label>
+    <input type="range" min="0" max="1" value="0" id="trans1" step="1" oninput="enableTranparencySlider(value)">
+    <output for="trans1" id="ET"></output>
+</form>-->
+
+
+
+<!--<label for="flip-1">Enable Transparency</label>
+<select name="flip-1" id="flip-1" data-role="slider">
+	<option value=false>Off</option>
+	<option value=true>On</option>
+	<!--title="Enable transparency in final artwork (if disabled, image wil have opaque white background behind any transparent objects or backgrounds)"--> 
+<!--</select> -->
+	  
+	  
+	</body>
+
+</html>
