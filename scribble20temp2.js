@@ -417,8 +417,7 @@ function onMouseMove2(ev) {
 	selectBrush(context,x,y);*/
 }
 function getTouchCoords(e){
-	e.preventDefault();
-e.stopPropagation();
+	e.preventDefault(); e.stopPropagation();  { passive: false }
 	if (!e) var e = window.event;
 	if(e.touches){
 	if(e.touches.length == 1){
