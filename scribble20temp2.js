@@ -432,6 +432,8 @@ return x,y
 
 function onTouchMove (e) {
 	//var x,y;
+	e.preventDefault();
+	e.stopPropagation();
 	getTouchCoords(e)
 	console.log("enableDrawm",enableDraw);
 	//enableDraw = true;
@@ -444,7 +446,7 @@ function onTouchMove (e) {
 	lastTool = "notbackground";
 	selectBrush(context,x,y);
 	//drawDot(context,x,y,12);
-	e.preventDefault();
+	
 	console.log(x,y);
 	//lastMove = {lastX:x,lastY:y}
 	console.log(lastMove);
