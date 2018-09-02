@@ -434,8 +434,7 @@ return x,y
 
 function onTouchMove (e) {
 	//var x,y;
-	e.preventDefault();
-	e.stopPropagation();
+	e.preventDefault(); e.stopPropagation();  { passive: false }
 	getTouchCoords(e)
 	console.log("enableDrawm",enableDraw);
 	//enableDraw = true;
