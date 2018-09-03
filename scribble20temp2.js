@@ -112,7 +112,7 @@ function init() {
 
 	//document.addEventListener('touchstart', function(e) {onTouchStart(e); enableDraw = true; e.preventDefault();}, { passive: false });
 	//document.addEventListener('touchend', function(e) { onTouchEnd(e); enableDraw = false; started = false;e.preventDefault();}, { passive: false });
-	$('canvas2').bind('touchmove', function(e){e.preventDefault()}); 
+	$('canvas2').bind('touchmove', function(e){e.preventDefault()},{passive:false}); 
 	var brushSliderTrigger = document.getElementsByClassName("brush-slider-trigger")[0];
 var brushSlider = document.getElementsByClassName("slider-brush-parent")[0];
 	brushSliderTrigger.addEventListener( "click" , function(el){
