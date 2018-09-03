@@ -119,6 +119,11 @@ function init() {
   e.stopPropagation();
   return false;
 })
+	
+	$('html, body').css({
+    overflow: 'hidden',
+    height: '100%'
+});
 	var brushSliderTrigger = document.getElementsByClassName("brush-slider-trigger")[0];
 var brushSlider = document.getElementsByClassName("slider-brush-parent")[0];
 	brushSliderTrigger.addEventListener( "click" , function(el){
