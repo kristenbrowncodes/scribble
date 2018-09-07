@@ -1475,6 +1475,7 @@ function onMouseDown2(e) {
 	onMouseDown(context,x1,y1);
 }
 function onTouchStart(e){
+	e.preventDefault(); e.stopPropagation();  { passive: false }
 	//brushSlider.classList.remove("active"); 
 //	shapeSlider.classList.remove("active");
 	getTouchCoords(e);
