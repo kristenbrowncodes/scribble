@@ -158,6 +158,16 @@ function init() {
 	//context.lineJoin = context.lineCap = 'round';
 	cPush();
 	bPush();
+	var body = document.documentElement;
+if (body.requestFullscreen) {
+  body.requestFullscreen();
+} else if (body.webkitrequestFullscreen) {
+  body.webkitrequestFullscreen();
+} else if (body.mozrequestFullscreen) {
+  body.mozrequestFullscreen();
+} else if (body.msrequestFullscreen) {
+  body.msrequestFullscreen();
+}
 	//document.addEventListener("mouseup",function(e) {brushSlider.classList.remove("active"); /*shapeSlider.classList.remove("active");*/}, false);
 	//document.addEventListener("touchend",function(e) {brushSlider.classList.remove("active"); /*shapeSlider.classList.remove("active");*/}, false);
 	//canvas.addEventListener('mousemove', onMouseMove, false);
