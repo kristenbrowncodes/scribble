@@ -2,12 +2,83 @@
 <html>
 	<head>
 	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+<LINK REL="icon" HREF="favicon3.ico">	
 		<title>SCRIBBLE!</title>
 		<style type="text/css">
+		/*https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/*/
+.inputFile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}		
 		
+label.bmodal{
+   display: inline-block;
+      color: #fff;
+      padding: 10px 15px;
+      background-color: black;
+      border-color: #367fa9;
+      border-radius: 4px;
+      cursor: pointer;
+	  z-index:3;
+}		
+.bmodcheck:checked + .brushmodal {display: flex}	
+.brushmodal {
+		display: none;
+		z-index:3;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 100px;
+      /*right: 0;
+      bottom: 0;*/
+      left: 100px;
+      text-align: center;
+	  /*pointer-events: none;*/
+	 /* background-color: aliceblue;*/
+}	
+.brushmodal-body {
+width: 200px;
+height: 200px;
+background: linear-gradient(to top , lightblue, aliceblue);
+cursor: pointer;
+/*pointer-events:none;*/
+z-index:3;
+}
+#TModal{position:absolute;}
+.tmodal {
+		display: none;
+		z-index:6;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 100px;
+      /*right: 0;
+      bottom: 0;*/
+      left: 100px;
+      text-align: center;
+	  /*pointer-events: none;*/
+	 /* background-color: aliceblue;*/
+}	
+.tmodal-content {
+width: 100%;
+height: 100%;
+background: linear-gradient(to top , lightblue, aliceblue);
+cursor: pointer;
+/*pointer-events:none;*/
+/*position: fixed;*/
+z-index:7;
+}
+.brushmodal-footer {/*overflow: hidden;*/z-index:11;}
+/*#scat{-moz-appearance:none;filter: invert(); border:1px solid lightblue;filter: opacity(25%);cursor: pointer;}*/
 .brush-slider {
 position: relative;
+
+
 /*font-size:85%;
 text-align: center;*/
 }
@@ -260,22 +331,21 @@ input[type=range]::-ms-fill-upper {
     border-radius: 1px;
 }
 			a { text-decoration: none; display:block;}
-			#imageView {margin: 0px; border: 4px solid aliceblue;background-color: white;z-index:0;}
-			#image2View {margin: 0px; border: 4px dashed darkblue;background-color: transparent;z-index:1;}
+			#imageView {margin: 0px; border: 4px solid aliceblue;background-color: white;z-index:0;cursor:crosshair;}
+			#image2View {margin: 0px; border: 4px dashed darkblue;background-color: transparent;z-index:1;cursor:crosshair;}
 			html, body {
 				background: linear-gradient(to bottom , aliceblue, lightblue);
 				z-index:-2
 				width: 100%;
-				overflow: hidden;
-   
 				height: 100%;
 				margin: 0px;
 			}
 			
 }
-.footer{position: fixed;
+.footer{position: absolute;
    left: 0;
-   bottom: 0;
+   top:100;
+  /* bottom: 0;*/
    width: 100%; }
    
    @media only screen and (min-width:765px){li{ display:inline;z-index:6;  }.footer2{display: none;}}
@@ -296,21 +366,25 @@ input[type=range]::-ms-fill-upper {
     -moz-user-select: none;
     -ms-user-select: none;
    }
-			#toolbar,  #ope,#save, #grad, #paint, #undo, #line2, #bubbles, #redo, #eraser,#pen4, #pen5,#pen6, #pen7, #geo2, #geo3,#NP1,#NP2, #clear, #lBrush, #cHatch, #cPen, #fPen, #pen3, #NP1, #NP2, #eTrans, #dTrans, #widen, #narrow, #lAlpha, #rAlpha, #select, #scatRect, #scatCirc, #spray2,#rect, #bc, #circ, #line, #qCurve, #fill, #stroke, #move, #copy, #delete {border: 1px lightblue; border-style:solid none none none; color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
+   button, p,#TModal{border:none;color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: left;     -webkit-user-select: none; 	 -moz-user-select: none;
+    -ms-user-select: none;
+    }
+			#toolbar,  #ope,#save,/*button, p,*/#paint,#grad, #bmodal + label,.inputFile +label,/*label,*/ #custom, #undo, #line2,  #bubbles, #redo, #eraser,#pen4, #pen5,#pen6, #pen7, #geo2, #geo3,#NP1,#NP2, #clear, #lBrush, #cHatch, #cPen, #fPen, #pen3, #NP1, #NP2, #eTrans, #dTrans, #widen, #narrow, #lAlpha, #rAlpha, #select, #scatRect, #scatCirc, #spray2,#rect, #bc, #circ, #line, #qCurve, #fill, #stroke, #move, #copy, #delete {border: 1px lightblue; border-style:solid none none none; color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
 			 -moz-user-select: none;
     -ms-user-select: none;
     }
+	.inputFile + label{cursor: pointer; font-size: 85%;}
 	#toolbar {float: left; clear:both;}		/* #paint{color: darkblue; background-color: aliceblue; margin-bottom: 0px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
    }*/
-	 #scatRect:active, #scatCirc:active, #fill:active, #grad:active, #stroke:active, #move:active, #copy:active, #delete:active, #clear:active, #bc:active, #NP1:active, #NP2:active, #lBrush:active, #cHatch:active, #fPen:active, #save:active, #paint:active, #spray2:active,#rect:active, #circ:active, #line:active, #qCurve:active { background-color: lightblue;}
+	 #scatRect:active, #scatCirc:active, #fill:active, #custom:active, #stroke:active, #move:active, #copy:active, #delete:active, #clear:active, #bc:active, #NP1:active, #NP2:active, #lBrush:active, #cHatch:active, #fPen:active, #save:active, #paint:active, #spray2:active,#rect:active, #circ:active, #line:active, #qCurve:active { background-color: lightblue;}
 			#toolbar {border:none}
 			#container {position: relative;}
 		
 		</style>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="scribble20temp2.js"></script>
+	<script type="text/javascript" src="scribblebrush4x.js"></script>
 	<script type="text/javascript" src="init.js"></script>
 	</head>
 	<body>
@@ -341,7 +415,7 @@ input[type=range]::-ms-fill-upper {
 				</div>
 			<div id="toolbar" >
 			<div class="brush-slider"  >
-			<a href="#" class="brush-slider-trigger" >Brush</a>
+			<a href="#" class="brush-slider-trigger" >Brush&nbsp;&#10148;</a>
 			<div class="slider-brush-parent">
 				<div class="column">
 				<div id="paint" title="Drawing Tool" style="width:100%; height:48px; float:left;">Pencil</div><div style="clear: none;"></div>
@@ -359,27 +433,29 @@ input[type=range]::-ms-fill-upper {
 				<div id="pen4" title="Calligraphy pen" style="width:100%; height:48px; float:right;">Slanted Pen</div><div style="clear: none;"></div>
 			
 				<div id="pen5" title="Fanned out" style="width:100%; height:48px; float:right;">Fan</div><div style="clear: none;"></div>
-				<div id="geo2" title="Corrugated" style="width:100%; height:48px; float:right;">Corrugated</div><div style="clear: none;"></div>	
+				<!--<div id="geo2" title="Corrugated" style="width:100%; height:48px; float:right;">Corrugated</div><div style="clear: none;"></div>-->
+				<div id="custom" title="Custom" style="width:100%; height:48px; float:right;">Custom</div><div style="clear: none;"></div>				
 					</div>
 				<div class="column">
-				<!--<div id="pen6" title="Mountains" style="width:100%; height:48px; float:right;">Int</div><div style="clear: none;"></div>-->
-				<div id="grad" title="Gradient pattern stamp brush" style="width:100%; height:48px; float:right;">Gradient Brush</div><div style="clear: none;"></div>
+				<div id="grad" title="Gradient Stamp Brush" style="width:100%; height:48px; float:right;">Satin</div><div style="clear: none;"></div>
 				<div id="pen7" title="Geodesic Neighboring Points tool" style="width:100%; height:48px; float:right;">Geodesic</div><div style="clear: none;"></div>
 				
 				<div id="geo3" title="A geometric neighboring point tool" style="width:100%; height:48px; float:right;">Barbed Wire</div><div style="clear: none;"></div>
 				<div id="NP1" title="Neighboring points tool 1" style="width:100%; height:48px; float:right;">Shading</div><div style="clear: none;"></div>
 				<div id="NP2" title="Neighboring points tool 2" style="width:100%; height:48px; float:right;">Hairnet</div><div style="clear: none;"></div>
 				<div id="bubbles" title="Neighboring points tool 2" style="width:100%; height:48px; float:right;">Bubbles</div><div style="clear: none;"></div>
+				
 				</div>
+				<label for="bmodal" style="z-index:8; font-size: 85%;cursor:pointer;">Edit Custom&nbsp;&#10148;</label>
 			</div>
 			</div>
 			
 			<div class="shape-slider"  >
-			<a href="#" class="shape-slider-trigger" >Shape</a>
+			<a href="#" class="shape-slider-trigger" >Shape&nbsp;&#10148;<br /></a>
 			<div class="slider-shape-parent">
-				<div id="line" title="Straight Line Tool" style="width:100%; height:28px; float:left;">Line</div><div style="clear: both;"></div>
-				<div id="rect" title="Rectangle Tool" style="width:100%; height:28px; float:left;">Rectangle</div><div style="clear: both;"></div>
-				<div id="circ" title="Circle Tool" style="width:100%; height:28px; float:left;">Circle</div><div style="clear: both;"></div>
+				<div id="line2" title="Straight Line Tool" style="width:100%; height:28px; float:left;">Line</div><div style="clear: both;"></div>
+				<div id="rect2" title="Rectangle Tool" style="width:100%; height:28px; float:left;">Rectangle</div><div style="clear: both;"></div>
+				<div id="circ2" title="Circle Tool" style="width:100%; height:28px; float:left;">Circle</div><div style="clear: both;"></div>
 				<div id="qCurve" title="Quadratic Curve Tool &#13;Double click for control point, then click and drag from start point to end point" style="width:100%; height:28px; float:left;">Quadratic Curve</div><div style="clear: both;"></div>
 			
 			
@@ -387,27 +463,34 @@ input[type=range]::-ms-fill-upper {
 			</div>	
 			<!--	<div id="paint" title="Drawing Tool" style="width:38px; height:28px; float:left;">Draw</div><div style="clear: both;"></div>
 				<div id="line" title="Straight Line Tool" style="width:100%; height:28px; float:left;">Line</div><div style="clear: both;"></div>
-				<!--<div id="spray" title="Spray Paint Tool" style="width:38px; height:16px; float:left;">Spray</div><div style="clear: both;"></div>-->
+				<div id="spray" title="Spray Paint Tool" style="width:38px; height:16px; float:left;">Spray</div><div style="clear: both;"></div>-->
 			<!--	<div id="spray2" title="Spray Paint Tool" style="width:38px; height:28px; float:left;">Spray</div><div style="clear: both;"></div>
 				<div id="rect" title="Rectangle Tool" style="width:100%; height:28px; float:left;">Rect</div><div style="clear: both;"></div>
 				<div id="circ" title="Circle Tool" style="width:100%; height:28px; float:left;">Circ</div><div style="clear: both;"></div>
-				<!--<div id="scatRect" title="Square Brush" style="width:38px; height:28px; float:left;">SB</div><div style="clear: both;"></div>
+				<div id="scatRect" title="Square Brush" style="width:38px; height:28px; float:left;">SB</div><div style="clear: both;"></div>
 				<div id="scatCirc" title="Circle Brush" style="width:38px; height:28px; float:left;">CB</div><div style="clear: both;"></div>
 				<div id="qCurve" title="Quadratic Curve Tool &#13;Double click for control point, then click and drag from start point to end point" style="width:100%; height:28px; float:left;">QC</div><div style="clear: both;"></div>
-		<!--		<div id="widen" title="Increase Stroke Width" style="width:38px; height:16px; float:left;"> &gt </div><div style="clear: both;"></div>
+				<div id="widen" title="Increase Stroke Width" style="width:38px; height:16px; float:left;"> &gt </div><div style="clear: both;"></div>
 				<div id="narrow" title="Decrease Stroke Width" style="width:38px; height:16px; float:left;"> &lt </div><div style="clear: both;"></div>
 				<div id="rAlpha" title="Increase Opacity" style="width:38px; height:16px; float:left;"> A+ </div><div style="clear: both;"></div>
 				<div id="lAlpha" title="Decrease Opacity" style="width:38px; height:16px; float:left;"> A- </div><div style="clear: both;"></div> -->
-				<div id="fill" title="Draw filled shapes and lines" style="width:100%; height:28px; float:left;">Fill</div><div style="clear: both;"></div>
+				<div id="undo" title="Undo" style="width:100%; height:28px; float:left;clear:both;writing-mode:vertical-rl;text-align:center; vertical-align:middle; "><br />&#8630;</div><div style="clear: both;"></div>
+				<div id="redo" title="Redo" style="width:100%; height:28px; float:left;border-bottom:1px solid lightblue; writing-mode:vertical-lr;text-align:center; vertical-align:middle;transform: rotate(180deg);"><br />&#8631;</div><div style="clear: both;"></div>
+				<div id="fill" title="Draw filled shapes and lines" style="width:100%; height:28px; float:left;border:none;">Fill</div><div style="clear: both;"></div>
 				<div id="stroke" title="Draw outlined shapes and lines" style="width:100%; height:28px; float:left;">Stroke</div><div style="clear: both;"></div>
 				<!--<div id="select" title="Select a section of canvas to move, copy or delete" style="width:38px; height:16px; float:left;">Select</div><div style="clear: both;"></div>-->
-				<div id="move" title="Click and drag to select area to be moved, then double click destination" style="width:100%; height:28px; float:left;">Move</div><div style="clear: both;"></div>
+				<!--<div id="move" title="Click and drag to select area to be moved, then double click destination" style="width:100%; height:28px; float:left;">Move</div><div style="clear: both;"></div>
 				<div id="copy" title="Click and drag to select area to be copied, then double click destination" style="width:100%; height:28px; float:left;">Copy</div><div style="clear: both;"></div>
-				<div id="delete" title="Click and drag to select area to be deleted" style="width:100%; height:28px; float:left;">Del</div><div style="clear: both;"></div>
-				<a id="save" download="Canvas.png" href="#">Save</a>
+				<div id="delete" title="Click and drag to select area to be deleted" style="width:100%; height:28px; float:left;">Del</div><div style="clear: both;"></div>-->
+				
+				<a id="save" download="Canvas.png" href="#" accesskey="s">Save</a>
 				<!--<div id="save" style="width:36px; height:16px; float:left;">Save</div><div style="clear: both;"></div>-->
+				
 				<div id="clear" title="Erase entire Page" style="width:100%; height:28px; float:left;">Clear</div><div style="clear: both;"></div>
+				<!--<div id="upload" title="Upload image onto canvas" style="width:100%; height:28px; float:left;">Upload</div><div style="clear: both;"></div>-->
+				
 				<div id="bc" title="Change background color&#13;(will cover previous artwork at full opacity)" style="width:100%; height:28px; float:left;">BC</div><div style="clear: both;"></div>
+				
 				<!--<div id="eTrans" title="Enable transparency in final artwork" style="width:38px; height:16px; float:left;">ET</div><div style="clear: both;"></div>
 				<div id="dTrans" title="Disable transparency in final artwork&#13(Image wil have opaque white background behind any transparent objects or backgrounds)" style="width:38px; height:16px; float:left;">DT</div><div style="clear: both;"></div>-->
 			<!--<div id="lBrush" title="Slanted Lines Brush" style="width:38px; height:28px; float:left;">LB</div><div style="clear: both;"></div>
@@ -421,20 +504,88 @@ input[type=range]::-ms-fill-upper {
 				<div id="geo2" title="Mountains" style="width:38px; height:28px; float:left;">Geo2</div><div style="clear: both;"></div>
 				<div id="NP1" title="Neighboring points tool 1" style="width:38px; height:28px; float:left;">NP1</div><div style="clear: both;"></div>
 				<div id="NP2" title="Neighboring points tool 2" style="width:38px; height:28px; float:left;">NP2</div><div style="clear: both;"></div>-->
-				<div id="undo" title="Undo" style="width:100%; height:28px; float:left;">Undo</div><div style="clear: both;"></div>
+			<!--	<div id="undo" title="Undo" style="width:100%; height:28px; float:left;">Undo</div><div style="clear: both;"></div>
 				<div id="redo" title="Redo" style="width:100%; height:28px; float:left;">Redo</div><div style="clear: both;"></div>
 				<div id="line2" title="Redo" style="width:100%; height:28px; float:left;">line2</div><div style="clear: both;"></div>
 				<div id="rect2" title="Redo" style="width:100%; height:28px; float:left;">rect2</div><div style="clear: both;"></div>
 				<div id="circ2" title="Redo" style="width:100%; height:28px; float:left;">circ2</div><div style="clear: both;"></div>
-				<div id="draw2" title="Redo" style="width:100%; height:28px; float:left;">draw2</div><div style="clear: both;"></div>
-				<div id="dash" title="Redo" style="width:100%; height:28px; float:left;">Dash</div><div style="clear: both;"></div>
-				<div id="solid" title="Redo" style="width:100%; height:28px; float:left;">Solid</div><div style="clear: both;"></div>
+				<div id="draw2" title="Redo" style="width:100%; height:28px; float:left;">draw2</div><div style="clear: both;"></div>-->
+				<div id="copy2" title="Quick Copy" style="width:100%; height:28px; float:left;">Copy</div><div style="clear: both;"></div>
+			<!--	<div id="move2" title="Move" style="width:100%; height:28px; float:left;">Move</div><div style="clear: both;"></div>-->
+				<div id="del2" title="Delete" style="width:100%; height:28px; float:left;">Del</div><div style="clear: both;"></div>
+				<div id="select" title="Select" style="width:100%; height:28px; float:left;">Select</div><div style="clear: both;"></div>
+				<div id="paste" title="PAste" style="width:100%; height:28px; float:left;">Paste</div><div style="clear: both;"></div>
+				<div id="dash" title="Dashed Line" style="width:100%; height:28px; float:left;">Dash</div><div style="clear: both;"></div>
+				<div id="solid" title="Solid Line" style="width:100%; height:28px; float:left;">Solid</div><div style="clear: both;"></div>
+				<div id="eyed" title="Eyedropper Tool" style="width:100%; height:28px; float:left;">Eyedr</div><div style="clear: both;"></div>
+				<div id="crop" title="Crop canvas to selection" style="width:100%; height:28px; float:left;">Crop</div><div style="clear: both;"></div>
+				<div id="flood" title="Paint Bucket Tool" style="width:100%; height:28px; float:left;">Flood</div><div style="clear: both;"></div>
 				<!--<div id="eraser" title="Erase" style="width:100%; height:28px; float:left;">Eraser</div><div style="clear: both;"></div>-->
-
+				<label for="upload" style="font-size:85%;cursor:pointer;">Upload</label><br>
+				<input type="file" name="upload" id="upload" class="inputFile"/>
+				<button id="transformBtn" style="border:none;" >TF<button>
+				
+				
 				
 			</div> 
 			
-			<div id="canvasDiv" style="float: left; clear: both;">
+
+				<input class="bmodcheck" type="checkbox" id="bmodal" autocomplete="off" hidden onclick="getCustom()">
+		<div class="brushmodal">
+		<label for="bmodal" style="position:absolute; left:184px; top: -8px;z-index:12;color: darkblue;font-size: 200%;">&#xd7;</label>
+			<div class="brushmodal-body">
+				
+				<div class="brushmodal-content" style="color: darkblue; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;">Create Custom Brush<br />
+				
+				<canvas id="brushImage" style="z-index:3;border: 4px solid aliceblue;background-color: white; position:absolute;
+					left:16px;
+					top:16px;"></canvas>
+				<canvas id="brush2Image" style="z-index:4;border: 4px solid aliceblue;background-color: transparent;position:absolute;
+					left:16px;
+					top:16px;"></canvas>
+				<!--<button id="clearBrush" style="position:relative; top:184px;left:-104px;z-index:4">Clear</button>-->
+				<label style="position:absolute; bottom:0px;left:34px;z-index:4"><input name="scatcheckbox" type="checkbox" id="scat" autocomplete="off" style="position:absolute; border: 1px solid lightblue;bottom:-1px;left:-19px;z-index:4;" value="" onclick="getScat(value)"/>Scatter</label>
+				  
+				 <label style="position:absolute; bottom:0px;left:124px;z-index:4"><input name="rotcheck" type="checkbox" id="rot" autocomplete="off" style="position:absolute; bottom:-1px;left:-20px;z-index:4" value="" onclick="getRot(value)">Rotate</label>
+				<!-- <label for="rot" style="z-index=5"> Rotate</label>-->
+				</div>
+				<div class="brushmodal-footer">
+					
+					
+				</div>
+			</div>
+		</div>
+		
+<div id="TModal" class="tmodal" >
+
+  <!-- Modal content -->
+  <div class="tmodal-content">
+  <div id="TModalheader">
+    <span class="close" style="position:absolute; top:-8px;right:1px;color: darkblue;font-size: 200%;">&#xd7;</span>
+    <p style="text-align:center; font-size: 100%; margin-top:3px;">Transform Selection</p>
+	</div>
+	
+	&nbsp;&nbsp;&nbsp;&nbsp;X scale:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="scaleX" id="scaleX" pattern="^-?\d*\.{0,1}\d+$" title="Enter a Number" autocomplete="off"style="width:40px;margin-top:3px;margin-left:1px;background-color:darkblue;color:white;opcaity:.3;" value="100">&nbsp;%<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;Y scale&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="scaleY" id="scaleY"autocomplete="off"style="width:40px;margin-left:1px;" value="100">&nbsp;%<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;X move:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="moveX" id="moveX"autocomplete="off" style="width:40px;" value="0">&nbsp;px<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;Y move:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="moveY" id="moveY"autocomplete="off"style="width:40px;" value="0">&nbsp;px<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; Rotate:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="rotateX" id="rotateX"style="width:40px;margin-left:1px;" autocomplete="off"value="0">&nbsp;&#176;<br>
+	<!--Y rotate:&nbsp;<input type="text" name="rotateY" id="rotateY"style="width:50px;align:left;" value="0">&#176;<br>-->
+	&nbsp;&nbsp;&nbsp;&nbsp;X skew:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="skewX"name="moveX" autocomplete="off"style="width:40px;" value="0">&nbsp;&#176;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;Y skew:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="moveY" id="skewY"autocomplete="off"style="width:40px;" value="0">&nbsp;&#176;<br>
+	<label ><input name="flipH" type="checkbox" id="flipH" autocomplete="off"  value="" style="margin-left: 30px;margin-top:7px;" >Flip Horizontal</label><br>
+	<label ><input name="flipV" type="checkbox" id="flipV" autocomplete="off"  value="" style="margin-left: 30px;" >Flip Vertical</label><br>
+	<label ><input name="copyTran" type="checkbox" id="copyTran" autocomplete="off"  value="" style="margin-left: 30px;" >Copy</label><br>
+	Repeat:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="repeatNum" id="repeatNum"autocomplete="off"style="width:40px;margin-top:7px; " value="1">&nbsp;times<br>
+    
+	<br><button id="applyBtn" style="margin-left:5%;font-size: 100%">Apply Transformation<button>
+  </div>
+
+</div>
+			
+			
+			
+			<div id="canvasDiv" style="float: left; clear: both; resize:both; overflow:auto;">
 				<canvas id="imageView" style="z-index: 0;
 					position:absolute;
 					left:50px;
@@ -451,7 +602,11 @@ input[type=range]::-ms-fill-upper {
 					<canvas id="image2View"style="z-index: 1;
 						position:absolute;
 						left:50px;
-						top:40px;></canvas>
+						top:40px;"> 
+						</canvas>
+				<canvas id="cropView" style="position:absolute;z-index:-40
+					left:50px;
+					top:40px;opacity:0%;display:none;"></canvas>
 			</div>
 		<div id="stats" style="font-size:8pt; padding-right: 5px; color:darkblue; font-family: sans-serif; float: right; clear:both; z-index: 3;">0 0</div>        
   
@@ -459,25 +614,34 @@ input[type=range]::-ms-fill-upper {
            opacity
            <input type="range" name="points" min="1" max="10">  
         </form>-->
+	<!--	<div id="brushCanvas" class="brushModal">
+		    <div class="brushM-content">
+				<canvas id="brushView" style="z-index:7; position:fixed;top:100px,;left:100px;"></canvas>
+				<span class="close-brush">Close</span>
+				<span class="save-brush">Apply</span>
+			</div>
+		</div>-->
+	
 </div>
-<div class="footer" style="position: fixed;
+<div class="footer" style="position: absolute;
    left: 0;
    bottom: 0;
-   width: 300%;">
+   width: 100%;">
    <ul>
 
 	<li>	<form class="opacity" style="float:left;/* clear:both;*/">
     <label for="alpha1">Opacity</label>
-    <input type="range" min="1" max="10" value="10" id="alpha1" step="1" onclick="opacitySlider(value)" onchange="opacitySlider(value)" oninput="opacitySlider(value)">
+    <input type="range" min="1" max="10" value="10" autocomplete="off" id="alpha1" step="1" onclick="opacitySlider(value)" onchange="opacitySlider(value)" oninput="opacitySlider(value)">
     <output for="alpha1" id="opacity">10</output>
 </form></li>
 		<li>	<form class="lineThickness" style="float:left; /*clear:both;*/">
-    <label for="thickness1">    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stroke Width</label>
-    <input type="range" min="1" max="40" value="2" id="thickness1" step="1" onclick="strokeWidthSlider(value)" onchange="strokeWidthSlider(value)" oninput="strokeWidthSlider(value)">
+    <label for="thickness1" >    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Size</label>
+    <input type="range" min="1" max="40" value="2" autocomplete="off" id="thickness1" step="1" onclick="strokeWidthSlider(value)" onchange="strokeWidthSlider(value)" oninput="strokeWidthSlider(value)">
     <output for="thickness1" id="lineThickness">2</output>
 </form></li>
+
 <li><label class="switch enableT">
-  <input id="transCheck" type="checkbox" title="Enable transparency in final artwork (if disabled, image will have opaque white background behind any transparent objects or backgrounds)" onclick="getTrans(value)" > 
+  <input id="transCheck" type="checkbox" autocomplete="off" title="Enable transparency in final artwork (if disabled, image will have opaque white background behind any transparent objects or backgrounds)" onclick="getTrans(value)" > 
 <span class="slider round" </span>
   </label></li>
 </ul>
@@ -485,7 +649,7 @@ input[type=range]::-ms-fill-upper {
 <div class="footer2" style="position: fixed;
    left: 0;
    bottom: 0;
-   width: 300%;">
+   width: 100%;">
    	<form class="opacity" style="float:left; clear:both;">
     <label for="alpha1">Opacity</label>
     <input type="range" min="1" max="10" value="10" id="alpha1" step="1" onclick="opacitySlider(value)" onchange="opacitySlider(value)" oninput="opacitySlider(value)">
