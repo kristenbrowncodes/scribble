@@ -2474,7 +2474,8 @@ function onTouchEnd(){
 		y2 = touch.pageY - touch.target.offsetTop;
 	}
 //	}
-	
+	if(selectX != null){document.getElementById("transformBtn").disabled = false;$('#transformBtn').css("color", "darkblue"); $('#paste').css("color", "darkblue");$('#crop').css("color", "darkblue");
+}else if (selectX == null){document.getElementById("transformBtn").disabled = true;$('#transformBtn').css("color", "lightblue"); $('#paste').css("color", "lightblue");$('#crop').css("color", "lightblue");}
 	if(brushSelect == "noBrush" && (otherTools == "move" || otherTools == "copy" || otherTools == "delete" || otherTools == "rect" || otherTools == "circ" || otherTools == "line" )){
 		selectTool(context,x1,y1,x2,y2);
 	} else if(brushSelect == "noBrush" && otherTools == "qCurve"){
