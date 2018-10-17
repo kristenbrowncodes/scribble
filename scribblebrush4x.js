@@ -329,7 +329,8 @@ var shapeSlider = document.getElementsByClassName("slider-shape-parent")[0];
 	$('#geo3').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "geo3"; otherTools = "noTool";tempSelect = "noTemp";}, false);
 	$('#NP1').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "NP1"; otherTools = "noTool";tempSelect = "noTemp";}, false);
 	$('#NP2').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "NP2"; otherTools = "noTool";tempSelect = "noTemp";}, false);
-//	$('#rect').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "noBrush"; otherTools = "rect";tempSelect = "noTemp";/*rectTool(); *//*pencilDraw = false; sprayPaint = false; spray2Paint = false; scatRect = false; scatCirc = false; drawRect = true; drawSelect = false; moveTool = false; copyTool = false; deleteTool = false;*/}, false);
+	$('#feather').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "feather"; otherTools = "noTool";tempSelect = "noTemp";}, false);
+	//	$('#rect').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "noBrush"; otherTools = "rect";tempSelect = "noTemp";/*rectTool(); *//*pencilDraw = false; sprayPaint = false; spray2Paint = false; scatRect = false; scatCirc = false; drawRect = true; drawSelect = false; moveTool = false; copyTool = false; deleteTool = false;*/}, false);
 	//$('#circ').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "noBrush"; otherTools = "circ";tempSelect = "noTemp";/*rectTool(); pencilDraw = false; enableDraw == false; sprayPaint = false; spray2Paint = false; scatRect = false; scatCirc = false; drawRect = false; drawCirc = true; drawSelect = false; moveTool = false; copyTool = false; deleteTool = false;*/}, false);
 //	$('#line').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "noBrush"; otherTools = "line";tempSelect = "noTemp";/*rectTool(); pencilDraw = false; sprayPaint = false; spray2Paint = false; scatRect = false; scatCirc = false; drawRect = false; drawCirc = false; drawLine = true; drawSelect = false; moveTool = false; copyTool = false; deleteTool = false;*/}, false);
 	$('#qCurve').get(0).addEventListener('click', function(e) {lastTool = "notbackground"; brushSelect = "noBrush"; otherTools = "qCurve";tempSelect = "noTemp";/*rectTool(); pencilDraw = false; sprayPaint = false; spray2Paint = false; scatRect = false; scatCirc = false; drawRect = false; drawCirc = false; drawLine = false; drawQCurve = true; drawSelect = true; moveTool = false; copyTool = false; deleteTool = false;*/}, false);
@@ -1599,6 +1600,45 @@ function selectBrush(context,x,y){
 				if(fillColor != 'transparent') {context.strokeStyle = fillColor;}
 				context.moveTo(bzPoints[bzPoints.length -1].bzX /*+ (dx*.2)*/,bzPoints[bzPoints.length -1].bzY /*+ (dy*.2)*/);
 				context.lineTo(bzPoints[i].bzX /*- (dx*.2)*/, bzPoints[i].bzY /*- (dy*.2)*/);
+				context.stroke();
+				}
+	}
+	//cPush();
+	context.strokeStyle = strokeColor;
+	context.fillStyle = fillColor;
+	} else if (brushSelect == "feather"){
+		//cPush();
+		context.lineCap = 'round';
+			context.lineJoin = 'round';
+			bzPoints.push({bzX:x,bzY:y});
+		context.beginPath();
+			context.globalAlpha = alpha* 0.2;
+			context.strokeStyle = strokeColor;
+			context.moveTo(bzPoints[bzPoints.length-2].bzX,bzPoints[bzPoints.length-2].bzY);
+			context.lineWidth = (Math.floor(Number(thickness)/20))+1;
+			context.lineTo(bzPoints[bzPoints.length-1].bzX,bzPoints[bzPoints.length-1].bzY);
+			context.stroke();
+			//context.globalAlpha = alpha*0.1;
+			if (bzPoints.length>80){len = bzPoints.length -50;bzPoints.splice(0,len);}
+			for( var i = 1; i< bzPoints.length; i++){
+				dx = bzPoints[i].bzX-bzPoints[bzPoints.length-1].bzX;
+				dy = bzPoints[i].bzY-bzPoints[bzPoints.length-1].bzY;
+				d = dx *dx + dy * dy;
+				
+				if (d<2000 /*&& d > Number(thickness)*5*/ && Math.random() > d/2000) {
+					//console.log("np");
+				context.beginPath();
+				/*if(Number(thickness) < 10){
+				context.lineWidth = Number(thickness) * .8;}
+				else{
+				context.lineWidth =Number(thickness)*.4;}*/
+				//context.strokeStyle = 'rgba(0,0,0,.3)';
+				//context.globalAlpha = alpha* .1;
+				//context.lineWidth = Number(thickness) * 0.3;
+				if(fillColor != 'transparent') {context.strokeStyle = fillColor;}
+				context.moveTo(bzPoints[bzPoints.length -1].bzX /*+ (dx*.2)*/,bzPoints[bzPoints.length -1].bzY /*+ (dy*.2)*/);
+				context.lineTo(bzPoints[bzPoints.length -1].bzX - (dx * (Number(thickness)/10))+Math.random() * 5/*- (dx*.2)*/, bzPoints[bzPoints.length -1].bzY - (dy * (Number(thickness)/10))+Math.random() * 5/*- (dy*.2)*/);
+				context.lineWidth = 1;
 				context.stroke();
 				}
 	}
