@@ -370,9 +370,11 @@ input[type=range]::-ms-fill-upper {
     -moz-user-select: none;
     -ms-user-select: none;
    }
-   button, p,#TModal{border:none;color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: left;     -webkit-user-select: none; 	 -moz-user-select: none;
+   button, #TModal{border:none;color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: left;     -webkit-user-select: none; 	 -moz-user-select: none;
     -ms-user-select: none;
     }
+			p {border:none;color: darkblue; cursor: pointer; border: 3px lightblue; border-style:none none solid none;background-color: aliceblue; margin-bottom: -2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none; 	 -moz-user-select: none;
+    -ms-user-select: none;}
 			#toolbar,  #ope,#save,/*button, p,*/#paint,#grad, #bmodal + label,.inputFile +label,/*label,*/ #custom, #undo, #line2,  #bubbles, #redo, #eraser,#pen4, #pen5,#pen6, #pen7, #geo2, #geo3,#NP1,#NP2, #clear, #lBrush, #cHatch, #cPen, #fPen, #pen3, #NP1, #NP2, #eTrans, #dTrans, #widen, #narrow, #lAlpha, #rAlpha, #select, #scatRect, #scatCirc, #spray2,#rect, #bc, #circ, #line, #qCurve, #fill, #stroke, #move, #copy, #delete {border: 1px lightblue; border-style:solid none none none; color: darkblue; cursor: pointer; background-color: aliceblue; margin-bottom: 2px; font-family: Candara, Helvetica, sans-serif; font-size: 85%; text-align: center;     -webkit-user-select: none;
 			 -moz-user-select: none;
     -ms-user-select: none;
@@ -422,47 +424,54 @@ input[type=range]::-ms-fill-upper {
 			<a href="#" class="brush-slider-trigger" >Brush&nbsp;&#10148;</a>
 			<div class="slider-brush-parent">
 				<div class="column">
+				<p>Basic</p>
+				<div id="paint" title="Drawing Tool"  div style="width:100%; height:48px; float:left;">Pencil<img src="pencil2.png"></div><div style="clear: none;"></div>
 				
-				<div id="paint" title="Drawing Tool"  div style="width:100%; height:48px; float:left;">Pencil<br><img src="pencil.png"></div><div style="clear: none;"></div>
+				<div id="eraser" title="Erase" style="width:100%; height:48px; float:left;">Eraser<br><img src="eraser2.png"></div><div style="clear: none;"></div>
+				<div id="spray2" title="Spray Paint and Blender Tool" style="width:100%; height:48px; float:left;">Spray Paint<br><img src="spray.png"></div><div style="clear: none;"></div>
+				<div id="fPen" title="Fountain Pen" style="width:100%; height:48px; float:left;">Quill<br><img src="fpen.png"></div><div style="clear: none;"></div>
+				<div id="pen4" title="Calligraphy pen" style="width:100%; height:48px; float:right;">Chisel Tip<br><img src="slant.png"></div><div style="clear: none;"></div>
 				
-				<div id="eraser" title="Erase" style="width:100%; height:48px; float:left;">Eraser<br><img src="eraser.png"></div><div style="clear: none;"></div>
-				<div id="spray2" title="Spray Paint and Blender Tool" style="width:100%; height:48px; float:left;">Spray Paint</div><div style="clear: none;"></div>
-				<div id="scatRect" title="Square Brush" style="width:100%; height:48px; float:left;">Square Brush</div><div style="clear: none;"></div>
-				<div id="scatCirc" title="Circle Brush" style="width:100%; height:48px; float:left;">Circle Brush</div><div style="clear: none;"></div>
 				</div>
 				<div class="column">
-				<div id="lBrush" title="Slanted Lines Brush" style="width:100%; height:48px; float:left;">Line Brush<br><img src="linebrush.png"></div><div style="clear: none;"></div>
+				<p>Shapes</p>
+				<div id="scatRect" title="Square Brush" style="width:100%; height:48px; float:left;">Squares<br><img src="squareb.png"></div><div style="clear: none;"></div>
+				<div id="scatCirc" title="Circle Brush" style="width:100%; height:48px; float:left;">Circle Brush<br><img src="circles.png"></div><div style="clear: none;"></div>
+				<div id="lBrush" title="Slanted Lines Brush" style="width:100%; height:48px; float:left;">Line Brush<br><img src="linebrush2.png"></div><div style="clear: none;"></div>
 				
 				
-				<div id="cHatch" title="Cross-Hatching Brush" style="width:100%; height:48px; float:left;">Cross Hatch</div><div style="clear: none;"></div>
+				<div id="cHatch" title="Cross-Hatching Brush" style="width:100%; height:48px; float:left;">Cross Hatch<br><img src="crossHatch.png"></div><div style="clear: none;"></div>
 				
-				<div id="fPen" title="Fountain Pen" style="width:100%; height:48px; float:left;">Fountain Pen</div><div style="clear: none;"></div>
 				
-				<div id="pen3" title="Striped pen" style="width:100%; height:48px; float:left;">Rake</div><div style="clear: none;"></div>
 				
-				<div id="pen4" title="Calligraphy pen" style="width:100%; height:48px; float:right;">Slanted Pen</div><div style="clear: none;"></div>
+				<div id="pen3" title="Striped pen" style="width:100%; height:48px; float:left;">Rake<br><img src="rake.png"></div><div style="clear: none;"></div>
+				
+				
 			</div>
 			<div class="column">
-				<div id="pen5" title="Fanned out" style="width:100%; height:48px; float:right;">Fan <br><img src="fan.png"></div><div style="clear: none;"></div>
-				<!--<div id="geo2" title="Corrugated" style="width:100%; height:48px; float:right;">Corrugated</div><div style="clear: none;"></div>-->
-				<div id="custom" title="Custom" style="width:100%; height:48px; float:right;">Custom<br><img src="custom.png"></div><div style="clear: none;"></div>				
-
+			<p title="Calculated neighboring points tools">N. Points</p>
+				<div id="NP1" title="Neighboring points tool 1" style="width:100%; height:48px; float:right;">Shading<br><img src="shading.png"></div><div style="clear: none;"></div>
+				<div id="NP2" title="Neighboring points tool 2" style="width:100%; height:48px; float:right;">Net<br><img src="net2.png"></div><div style="clear: none;"></div>
+				<div id="feather" title="Neighboring points tool 3" style="width:100%; height:48px; float:right;">Feather<br><img src="feather.png"></div><div style="clear: none;"></div>
 				
-				<div id="grad" title="Gradient Stamp Brush" style="width:100%; height:48px; float:right;">Satin</div><div style="clear: none;"></div>
 				
-				<div id="pen7" title="Geodesic Neighboring Points tool" style="width:100%; height:48px; float:right;">Geodesic</div><div style="clear: none;"></div>
-				<div id="geo3" title="A geometric neighboring point tool" style="width:100%; height:48px; float:right;">Barbed Wire</div><div style="clear: none;"></div>				
+				<div id="pen7" title="Geodesic Neighboring Points tool" style="width:100%; height:48px; float:right;">Geodesic<br><img src="geodesic.png"></div><div style="clear: none;"></div>
+				<div id="geo3" title="A geometric neighboring point tool" style="width:100%; height:48px; float:right;">Barbed Wire<br><img src="barbed2.png"></div><div style="clear: none;"></div>				
 									</div>
 				
 				<div class="column">
+				<p>Art</p>
+				<div id="pen5" title="Fanned out" style="width:100%; height:48px; float:right;">Fan <br><img src="fan.png"></div><div style="clear: none;"></div>
+				<!--<div id="geo2" title="Corrugated" style="width:100%; height:48px; float:right;">Corrugated</div><div style="clear: none;"></div>-->
 				
-				<div id="NP1" title="Neighboring points tool 1" style="width:100%; height:48px; float:right;">Shading</div><div style="clear: none;"></div>
-				<div id="NP2" title="Neighboring points tool 2" style="width:100%; height:48px; float:right;">Net</div><div style="clear: none;"></div>
-				<div id="bubbles" title="Bubbles" style="width:100%; height:48px; float:right;">Bubbles</div><div style="clear: none;"></div>
-				<div id="feather" title="Neighboring points tool 3" style="width:100%; height:48px; float:right;">Feather</div><div style="clear: none;"></div>
+
+				
+				<div id="grad" title="Gradient Stamp Brush" style="width:100%; height:48px; float:right;">Satin<br><img src="satin.png"></div><div style="clear: none;"></div>
+				<div id="bubbles" title="Bubbles" style="width:100%; height:48px; float:right;">Bubbles<br><img src="bubbles4.png"></div><div style="clear: none;"></div>
+				<div id="custom" title="Custom" style="width:100%; height:48px; float:right;">Custom<br><img src="custom.png"></div><div style="clear: none;"></div>				
 				
 				</div>
-				<label for="bmodal" style="z-index:8; font-size: 85%;cursor:pointer;">Edit Custom&nbsp;&#10148;</label>
+				<label for="bmodal" style="z-index:8; font-size: 85%;cursor:pointer; ">Edit Custom&nbsp;&#10148;</label>
 			</div>
 			</div>
 			
